@@ -8,7 +8,7 @@ This repo is the server side repo code for handling our game server logic.
 It communicates with the client using socket.io within express for real-time communication, and (hopefully) communicates with the Unity server by using GET and POST methods using plain express.js
 
 #### To do
-- Get a mongoDB instance running
+- Get a mongoDB instance running :white_check_mark:
 - Figure out mongo database structure
 - Get things storing/retreiving out of mongo database
 - After that try to send/receive basic data from [mobilia](https://github.com/polygon-studios/mobilia)  (front-end client code)
