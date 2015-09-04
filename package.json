@@ -1,0 +1,22 @@
+{
+  "name": "dedotated-wam",
+  "version": "1.0.0",
+  "description": "Server handler for Polygon Studios",
+  "main": "app.js",
+  "scripts": {
+    "test": "testing"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polygon-studios/dedotated-wam.git"
+  },
+  "author": "Ian Clarke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/polygon-studios/dedotated-wam/issues"
+  },
+  "homepage": "https://github.com/polygon-studios/dedotated-wam",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

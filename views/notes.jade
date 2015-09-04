@@ -1,0 +1,14 @@
+extends layout
+
+block header
+  script(src="javascripts/notes.js")
+
+block content
+  div.page-header
+    h1#pageTitle #{username}&#39;s Account
+    p#pageWelcome Welcome #{username}
+
+  form(action="/logout", method="post")
+        button.btn.btn-info(type="submit") Logout
+  
+  div.notesArea

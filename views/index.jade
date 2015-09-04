@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  - if(error)
+    div.error #{error}
+  div
+    form(action="/login", method="post")
+        div.form-group
+            label(for="username") Username
+            input.form-control.limitwidth(type="text", name="username")
+        div.form-group
+            label(for="password") Password
+            input.form-control.limitwidth(type="password", name="password")
+        button.btn.btn-default(type="submit") Login
+        button#register.btn.btn-warning(type="button") Register

@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+}
+
+.mylink {
+  color: #22B700;
+}
+
+.error {
+  color: #BB0000;
+}
+
+.limitwidth {
+    max-width: 240px;
+}
