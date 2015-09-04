@@ -1,11 +1,11 @@
-var bcrypt = require("bcryptjs");
 var express = require('express');
 var router = express.Router();
 var mongodb = require('mongodb');
 var mc = mongodb.MongoClient;
 var ObjectID = mongodb.ObjectID;
+var debug = require('debug')('worker');
 
-var notesCollection, usersCollection;
+var notesCollection;
 
 var connectToDBs = function(callback) {
     mc.connect('mongodb://localhost/persistent-notes', function(err, db) {
@@ -14,7 +14,6 @@ var connectToDBs = function(callback) {
         }
         
         notesCollection = db.collection('notes');
-	usersCollection = db.collection('users');
 
         if (callback) {
             callback();
@@ -23,51 +22,15 @@ var connectToDBs = function(callback) {
 }
 
 // connect to DB when file is loaded
-//connectToDBs();
+connectToDBs();
 
-router.post('/register', function(req, res) {
-    var username = req.body.username;
-    var password = req.body.password;
+/* 
 
-    var checkInsert = function(err, newUsers) {
-    	if (err) {
-    	    res.redirect("/?error=Unable to add user");
-    	} else {
-    	    res.redirect("/?error=User " + username +
-    			 " successfully registered");
-    	}
-    }
+    GET METHODS
 
-    var saveHash = function(err, hash) {
-      	var newUser = {
-      	    username: username,
-      	    password: hash
-      	};
-      	
-	// Do an update just in case the username got inserted
-	// behind our back.  We'll overwrite the old password but
-	// at least we won't get duplicate user records.
-      	usersCollection.update({username: username},
-			       newUser,
-			       {upsert: true},
-			       checkInsert);    
-    }
+*/
 
-    var checkUsername = function(err, user) {
-    	if (err) {
-    	    res.redirect("/?error=unable to check username");
-    	} else if (user === null) {
-    	    bcrypt.genSalt(10, function(err, salt) {
-    		bcrypt.hash(password, salt, saveHash);
-    	    });
-    	} else {
-    	    res.redirect("/?error=user already exists");
-    	}
-    }
-    
-    usersCollection.findOne({username: username}, checkUsername);
-});
-
+// Gets the index page 
 router.get('/', function(req, res) {
     if (req.session.username) {
         res.redirect("/notes");
@@ -77,6 +40,7 @@ router.get('/', function(req, res) {
     }
 });
 
+// Gets the notes.jade page
 router.get('/notes', function(req, res) {
     var username = req.session.username;
 
@@ -88,28 +52,19 @@ router.get('/notes', function(req, res) {
     }
 });
 
+
+/* 
+
+    POST METHODS
+
+*/
+
+// Logs in the user
 router.post('/login', function(req, res) {
     var username = req.body.username;
-    var password = req.body.password;
-    
-    var checkPassword = function(err, authenticated) {
-    	if (authenticated) {
-    	    req.session.username = username;
-    	    res.redirect("/notes");
-    	} else {
-    	    res.redirect("/?error=invalid username or password");	
-    	}
-    }
+    req.session.username = username;
 
-    var checkUsername = function(err, user){
-    	if (err || user === null) {
-    	    res.redirect("/?error=invalid username or password");	
-    	} else {
-    	    bcrypt.compare(password, user.password, checkPassword);
-    	}
-    }
-    
-    usersCollection.findOne({username: username}, checkUsername);
+    res.redirect("/notes")
 });
 
 router.post('/logout', function(req, res) {
@@ -121,6 +76,7 @@ router.post('/logout', function(req, res) {
     res.redirect("/");
 });
 
+// Fetches all the notes from the server
 router.get('/getNotes', function(req, res) {
     var username = req.session.username;
 
@@ -142,6 +98,7 @@ router.get('/getNotes', function(req, res) {
     }    
 });
 
+// Updates the current note
 router.post('/updateNote', function(req, res) {
     var username = req.session.username;
     var id = req.body.id;
@@ -155,6 +112,48 @@ router.post('/updateNote', function(req, res) {
             res.send("update succeeded");
         }
     }
+
+    var escapeText = function(html) {
+        var result = String(html)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+        if (result === '' + html) return html;
+        else return result;
+    };
+
+    var makeLink = function(html) {
+        var start = html.indexOf("[ ");
+        var end = html.lastIndexOf(" ]") + 2;
+        var tag = html.substring(start, end);
+        debug(tag);
+
+        var URLstart = tag.indexOf("http");
+        var URLend = tag.indexOf(".com") + 3;
+        var URL = tag.substr(URLstart, URLend);
+        debug(URL);
+
+        var labelStart = tag.indexOf(".com") + 5;
+        var labelEnd = tag.lastIndexOf(" ]");
+        var label = tag.substring(labelStart, labelEnd);
+        debug(label);
+
+        var firstPart = html.split("[ ", 1);
+        var secondPart = html.split(" ]");
+        secondPart = secondPart[1];
+        debug(firstPart);
+        debug(secondPart);
+
+        var finalHTML = firstPart + "<a href=" + URL + ">" + label + "</a>" + secondPart;
+        
+        return finalHTML;
+    }
+
+    content = escapeText(content);
+    debug(content)
+    content = makeLink(content);
+    debug(content)
     
     if (username) {
         if (id && title && content) {
@@ -172,32 +171,30 @@ router.post('/updateNote', function(req, res) {
     }
 });
 
+
+// Deletes the note
 router.post('/deleteNote', function(req, res) {
     var username = req.session.username;
     var id = ObjectID(req.body.id);
+    var noteTitle = req.body.title;
     
+
     var checkDelete = function(err, result) {
         if (err) {
-            res.send("ERROR: note not deleted");
+            res.send("ERROR: Delete failed");
         } else {
-            res.send("note deleted");
+            res.send("Delete succeeded");
         }
     }
     
     if (username) {
-        if (id) {
-            // should get note and check 
-            // if it really belongs to the current user
-            notesCollection.remove({_id: id},
-                                   checkDelete);
-        } else {
-            res.send("ERROR: bad parameters");
-        }
+        notesCollection.remove({_id: id}, checkDelete);
     } else {
-        res.send("ERROR: not logged in");
+        res.redirect("/?error=Not Logged In");
     }
 });
 
+// Adds a new note
 router.post('/newNote', function(req, res) {
     var username = req.session.username;
     var newNote;
@@ -219,55 +216,47 @@ router.post('/newNote', function(req, res) {
     } else {
         res.send("ERROR: Not Logged In");
     }
-
-    var oldUsername = req.session.username;
 });
 
+
+// Change the username
 router.post('/changeusername', function(req, res) {
+    var username = req.session.username;
     var newUsername = req.body.username;
-    var oldUsername = req.session.username;
 
-    var reportResult = function(status) {
-	   res.send(status);
+    var checkUpdate = function(err, result) {
+        if (err) {
+            res.send("ERROR: Update failed");
+        } else {
+            req.session.username = newUsername;
+            res.send("Update succeeded");
+        }
     }
 
-    var usernameUpdated = function(err, result) {
-    	if (err) {
-    	    req.session.username = oldUsername;
-    	    reportResult("ERROR: username not changed because of database " +
-    			 "update issue.");
-    	} else {
-    	    reportResult("username changed to " + newUsername);
-    	}
-    }
+    if (username) {
+        notesCollection.count({owner: newUsername}, function(err, results) {
+            if(err) {
+                res.send("ERROR: Update failed");
+            }
+            else {
+                if(results!=0)    {
+                    res.send("username already taken");
+                }
+                else {
+                    debug("Updating");
+                    notesCollection.update(
+                        {owner: username },
+                        {$set: { owner: newUsername } },
+                        {multi: true},
+                        checkUpdate);
+                }
+            }
+       });   
 
-    var checkNewUsername = function(err, note) {
-    	if (err) {
-    	    reportResult("ERROR: username not changed because database " +
-    			 "check for new username failed.");
-    	} else {
-    	    if (note) {
-        		reportResult("ERROR: username not changed because notes are " +
-        			     "already owned by " + newUsername + ".");
-    	    } else {
-        		req.session.username = newUsername;
-        		notesCollection.update({owner: oldUsername},
-        				       {$set: {owner: newUsername}},
-        				       {multi: true},
-        				       usernameUpdated);
-                usersCollection.update({username: oldUsername},
-                               {$set: {username: newUsername}},
-                               {multi: true},
-                               usernameUpdated);   
-    	    }
-    	}
-    }
-
-    if (oldUsername) {
-	   notesCollection.findOne({owner: newUsername}, checkNewUsername);
     } else {
-	   reportResult("ERROR: Not Logged In");
+        res.redirect("/?error=Not Logged In");
     }
 });
+
 
 module.exports = router;

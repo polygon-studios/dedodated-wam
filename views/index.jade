@@ -5,13 +5,10 @@ block content
   p Welcome to #{title}
   - if(error)
     div.error #{error}
+  p Please log in
   div
     form(action="/login", method="post")
-        div.form-group
+        div
+            input(type="text", name="username")
             label(for="username") Username
-            input.form-control.limitwidth(type="text", name="username")
-        div.form-group
-            label(for="password") Password
-            input.form-control.limitwidth(type="password", name="password")
-        button.btn.btn-default(type="submit") Login
-        button#register.btn.btn-warning(type="button") Register
+        button(type="submit") Login
