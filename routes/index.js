@@ -23,7 +23,7 @@ var connectToDBs = function(callback) {
 }
 
 // connect to DB when file is loaded
-connectToDBs();
+//connectToDBs();
 
 router.post('/register', function(req, res) {
     var username = req.body.username;
