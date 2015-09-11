@@ -14,7 +14,7 @@ var ObjectID = mongodb.ObjectID;
 
 var notesCollection, usersCollection;
 
-mc.connect('mongodb://45.55.90.100/test-mongo', function(err, db) {
+mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {
     console.log("Attempting to connect");
     if (err) {
         throw err;
