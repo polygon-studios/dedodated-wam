@@ -1,0 +1,18 @@
+To generate/regenerate the COMP 2406 TLS keys do something like this:
+
+1. Generate your private key:
+  openssl genrsa -out comp2406-private-key.pem
+
+2. Generate a certificate request (and enter in key metadata):
+  openssl req -new -key comp2406-private-key.pem -out comp2406-request.pem
+
+3. Generate a signed certificate:
+  openssl x509 -req -days 365 -in comp2406-request.pem -signkey \   
+     comp2406-private-key.pem -out comp2406-cert.pem
+
+4. Throw away the signing request:
+  rm comp2406-request.pem
+
+Note that this key is self-signed.  If you wanted a key signed by a certificate authority (e.g., Entrust, Verisign), you would have sent the request file to the certificate authority and they would have returned your signed certificate (e.g. you would send the output of #2 to them and they would perform #3 and return the result).
+
+see http://docs.nodejitsu.com/articles/HTTP/servers/how-to-create-a-HTTPS-server

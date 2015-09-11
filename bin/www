@@ -1,25 +1,35 @@
 #!/usr/bin/env node
+/* -*-Javascript-*- */
+/* (the above line sets JavaScript mode in Emacs) */
 
 /**
  * Module dependencies.
  */
 
 var app = require('../app');
-var debug = require('debug')('form-demo:server');
-var http = require('http');
+var debug = require('debug')('session-demo:server');
+var http, server;
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '4000');
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var httpsOptions = app.httpsOptions;
+
+if (httpsOptions) {
+    http = require('https');
+    server = http.createServer(httpsOptions, app);
+} else {
+    http = require('http');
+    server = http.createServer(app);
+}
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -28,7 +38,7 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
+debug('Express is listening on port' + port);
 /**
  * Normalize a port into a number, string, or false.
  */

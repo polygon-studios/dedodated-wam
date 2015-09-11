@@ -1,27 +1,21 @@
 extends layout
 
+block header
+  script(src="javascripts/register.js")
+
+
 block content
   h1= title
-
+  p Welcome to #{title}
+  - if(error)
+    div.error #{error}
   div
-    p Fill out your info
-    form(method="post", action="/add")
-      div
-        input#name(type="text", name="name")
-        label Name
-      div
-        input#country(type="text", name="city")
-        label City
-      div
-        input#country(type="text", name="country")
-        label Country
-      div
-        input#birthday(type="text", name="birthday")
-        label Birthday
-      div
-        input#email(type="text", name="email")
-        label Email
-      button(type="submit") Submit
-
-    form(method="get", action="/list")
-      button(type="submit") List
+    form(action="/login", method="post")
+        div.form-group
+            label(for="username") Username
+            input.form-control.limitwidth(type="text", name="username")
+        div.form-group
+            label(for="password") Password
+            input.form-control.limitwidth(type="password", name="password")
+        button.btn.btn-default(type="submit") Login
+        button#register.btn.btn-warning(type="button") Register

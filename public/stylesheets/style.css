@@ -1,8 +1,15 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.mylink {
+  color: #22B700;
+}
+
+.error {
+  color: #BB0000;
+}
+
+.limitwidth {
+    max-width: 240px;
 }
