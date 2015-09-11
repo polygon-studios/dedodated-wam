@@ -17,7 +17,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
-var middleman = require('.routes/middleman');
+var middleman = require('./routes/middleman');
 var admin = require('./routes/admin');
 
 var app = express();
