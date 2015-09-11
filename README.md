@@ -10,7 +10,7 @@ It communicates with the client using socket.io within express for real-time com
 #### To do
 - Get a mongoDB instance running :white_check_mark:
 - Figure out mongo database structure
-- Get things storing/retreiving out of mongo database
+- Get things storing/retreiving out of mongo database :white_check_mark:
 - After that try to send/receive basic data from [mobilia](https://github.com/polygon-studios/mobilia)  (front-end client code)
 
 As of Sept 11th the following:
@@ -26,6 +26,7 @@ Has:
 - Node, NPM, ExpressJS, Nginx
 - Form demo storing info in the session (no connection to mongo)
 - Code base is stored in /home/iryanclarke/dedotated-wam
+- Has an example codebase running that connects to and works with the persistent monga database
 
 
 ### Server commands:
