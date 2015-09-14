@@ -31,23 +31,27 @@ button {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: rgba(68, 68, 68, 0.82); }
+  background: rgba(68, 68, 68, 0.75); }
 
 .login {
   flex: 0 1 auto;
   min-width: 400px;
   text-align: center;
-  color: #FFF; }
+  color: #ECF0F1; }
   .login button {
     width: 100%; }
   .login h1 {
     font-weight: 700;
     font-size: 40px; }
   .login button {
+    webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     width: 100%;
     margin: 0.5em 0em;
     padding: 0.7em;
-    background-color: #2ECC71;
+    background-color: #42D08A;
     font-weight: 700; }
     .login button:hover {
       background-color: #27AE60; }
