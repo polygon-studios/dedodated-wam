@@ -7,15 +7,17 @@ block header
 block content
   div.admin
     div.login
-      h1 SIGN IN
-      p Glip glops only
+      h1= title
       - if(error)
         div.error #{error}
       div.login-form
-        form(action="/login", method="post")
+        form(action="admin/login", method="post")
             div.form-group
                 input.form-control.limitwidth(type="text", name="username", placeholder="Username")
             div.form-group
                 input.form-control.limitwidth(type="password", name="password", placeholder="Password")
             button.btn.btn-default(type="submit") SIGN IN
-            button#register.btn.btn-warning(type="button") Register
+            div.form-group
+              input(type="checkbox", name="remember-me")
+              label(for="remember-me") Remember Me?
+            a#register() Register

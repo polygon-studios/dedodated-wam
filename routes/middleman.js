@@ -69,7 +69,7 @@ router.get('/', function(req, res) {
     }
 });
 
-router.get('/notes', function(req, res) {
+router.get('/admin/notes', function(req, res) {
     var username = req.session.username;
 
     if (username) {

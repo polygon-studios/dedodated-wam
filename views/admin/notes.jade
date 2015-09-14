@@ -5,10 +5,9 @@ block header
 
 block content
   div.page-header
-    h1#pageTitle #{username}&#39;s Account
+    h1#pageTitle #{username}&#39;s Account and blek
     p#pageWelcome Welcome #{username}
 
-  form(action="/logout", method="post")
+  form(action="admin/logout", method="post")
         button.btn.btn-info(type="submit") Logout
-  
   div.notesArea

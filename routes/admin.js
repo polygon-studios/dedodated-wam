@@ -49,9 +49,9 @@ mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {
 router.get('/', function(req, res) {
     console.log("Trying to access admin homepage");
     if (req.session.username) {
-        res.redirect("/notes");
+        res.redirect("admin/notes");
     } else {
-        res.render('admin/index', { title: 'Welcome to the secret area', 
+        res.render('admin/index', { title: 'SIGN IN', 
                               error: req.query.error });
     }
 });
@@ -102,16 +102,19 @@ router.get('/getNotes', function(req, res) {
  & %POST%
  */
 
- router.post('/login', function(req, res) {
+router.post('/login', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
     
     var authenticateUser = function(err, user){
         if (err || user === null || password !== user.password) {
-            res.redirect("/?error=invalid username or password");       
+            res.redirect("/admin/?error=invalid username or password");     
         } else {
+            console.log("Username: %s", user);
+            console.log("Entered pass: %s", password);
+            console.log("User pass: %s", user.password);
             req.session.username = username;
-            res.redirect("/notes");
+            res.redirect("/admin/notes");
         }
     }
     
@@ -124,7 +127,8 @@ router.post('/logout', function(req, res) {
             console.log("Error: %s", err);
         }
     });
-    res.redirect("/");
+    console.log("ADMIN LOGOUT TRIGGERED");
+    res.redirect("/admin");
 });
 
 router.post('/updateNote', function(req, res) {
@@ -184,16 +188,16 @@ router.post('/register', function(req, res) {
 
     var checkInsert = function(err, newUsers) {
         if (err) {
-            res.redirect("/?error=Unable to add user");
+            res.redirect("/admin/?error=Unable to add user");
         } else {
-            res.redirect("/?error=User " + username +
+            res.redirect("/admin/?error=User " + username +
                          " successfully registered");
         }
     }
 
     var checkUsername = function(err, user) {
         if (err) {
-            res.redirect("/?error=unable to check username");
+            res.redirect("/admin/?error=unable to check username");
         } else if (user === null) {
             var newUser = {
                 username: username,
@@ -205,7 +209,7 @@ router.post('/register', function(req, res) {
                                    checkInsert);    
 
         } else {
-            res.redirect("/?error=user already exists");
+            res.redirect("/admin/?error=user already exists");
         }
     }
     

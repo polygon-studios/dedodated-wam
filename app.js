@@ -50,6 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/admin', admin);
+app.use('/admin/:page', admin);
 app.use('/middleman', middleman);
 
 // catch 404 and forward to error handler

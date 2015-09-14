@@ -65,7 +65,7 @@ router.get('/', function(req, res) {
     if (req.session.username) {
         res.redirect("/notes");
     } else {
-        res.render('index', { title: 'COMP 2406 Exam Notes Demo', 
+        res.render('index', { title: 'CASD', 
                               error: req.query.error });
     }
 });
