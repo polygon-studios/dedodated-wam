@@ -41,7 +41,7 @@ app.use(cookieParser());
 
 app.use(session({
     secret: "We need a better secret!",
-    store: new MongoStore({url: 'mongodb://localhost/exam-notes'}),
+    store: new MongoStore({url: 'mongodb://127.0.0.1/test-mongo'}),
     resave: false,
     saveUninitialized: true
   }));

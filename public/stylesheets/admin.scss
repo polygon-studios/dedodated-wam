@@ -1,0 +1,73 @@
+body, html{
+	height: 100%;
+	font-family: 'Cabin', sans-serif;
+}
+
+input {
+	border: none;
+	border-bottom: 1px solid #FFF;
+	margin: 0.5em 0em;
+	background: none;
+}
+
+input:focus, textarea:focus {
+	border: none;
+	border-bottom: 1px solid #FFF;
+	outline: 0;
+}
+
+
+*:focus {
+    outline: 0;
+}
+
+button {
+	width: 100%;
+	margin: 0.5em 0em;
+	padding: 0.5em;
+	background-color: #42D08A;
+	border: none;
+}
+
+.admin {
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	background: rgba(68, 68, 68, 0.62);;
+}
+
+.login{
+	flex: 0 1 auto;
+	max-width: 600px;
+	text-align: center;
+	color: #FFF;
+
+	button {
+		width: 100%;
+	}
+
+	h1{
+		font-weight: 700;
+	}
+
+	input {
+		&::-webkit-input-placeholder{
+			color: #FFF;
+			font-style: italic;
+		}
+		&::-moz-placeholder{
+			color: #FFF;
+			font-style: italic;
+		}
+		&:-ms-input-{
+			color: #FFF;
+			font-style: italic;
+		}
+	}
+	
+}

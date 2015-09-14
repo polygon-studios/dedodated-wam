@@ -6,6 +6,11 @@
  * @router
  */
 
+
+// #
+// # Load in dependencies
+// #
+
 var express = require('express');
 var router = express.Router();
 var mongodb = require('mongodb');
@@ -14,8 +19,12 @@ var ObjectID = mongodb.ObjectID;
 
 var notesCollection, usersCollection;
 
+
+// #
+// # Connect to DB
+// #
+
 mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {
-    console.log("Attempting to connect");
     if (err) {
         throw err;
     }
@@ -25,62 +34,75 @@ mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {
     console.log("Connected to DBs");
 });
 
-router.post('/register', function(req, res) {
-    var username = req.body.username;
-    var password = req.body.password;
 
-    var checkInsert = function(err, newUsers) {
-        if (err) {
-            res.redirect("/?error=Unable to add user");
-        } else {
-            res.redirect("/?error=User " + username +
-                         " successfully registered");
-        }
-    }
 
-    var checkUsername = function(err, user) {
-        if (err) {
-            res.redirect("/?error=unable to check username");
-        } else if (user === null) {
-            var newUser = {
-                username: username,
-                password: password
-            };
-            usersCollection.update({username: username},
-                                   newUser,
-                                   {upsert: true},
-                                   checkInsert);    
+/**
+ & GET Functions
+ & ----------------------------------
+ & Handles GET requests from the admin area 
+ & Provides admin server functionality for the game
+ & %GET%
+ */
 
-        } else {
-            res.redirect("/?error=user already exists");
-        }
-    }
-    
-    usersCollection.findOne({username: username}, checkUsername);
-});
 
+// # Load homepage
 router.get('/', function(req, res) {
-    console.log("Trying to access homepage");
+    console.log("Trying to access admin homepage");
     if (req.session.username) {
         res.redirect("/notes");
     } else {
-        res.render('index', { title: 'Welcome to the secret area', 
+        res.render('admin/index', { title: 'Welcome to the secret area', 
                               error: req.query.error });
     }
 });
 
+
+// # Load in interface
 router.get('/notes', function(req, res) {
     var username = req.session.username;
 
     if (username) {
-        res.render("notes.jade", {username: username,
+        res.render("admin/notes.jade", {username: username,
                                   title: username +"'s Notes"});
     } else {
         res.redirect("/?error=Not Logged In");
     }
 });
 
-router.post('/login', function(req, res) {
+// #
+// # Load in notes
+// #
+router.get('/getNotes', function(req, res) {
+    var username = req.session.username;
+
+    var renderNotes = function(err, notes) {
+        if (err) {
+            notes = [{"title": "Couldn't get notes",
+                      "owner": username,
+                      "content": "Error fetching notes!"}];
+        }
+        res.send(notes);
+    }
+    
+    if (username) {
+        notesCollection.find({owner: username}).toArray(renderNotes);
+    } else {
+        res.send([{"title": "Not Logged In",
+                   "owner": "None",
+                   "content": "Nobody seems to be logged in!"}]);
+    }    
+});
+
+
+/**
+ & POST Functions
+ & ----------------------------------
+ & Handles POST requests from the admin area 
+ & Provides admin server functionality for the game
+ & %POST%
+ */
+
+ router.post('/login', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
     
@@ -103,27 +125,6 @@ router.post('/logout', function(req, res) {
         }
     });
     res.redirect("/");
-});
-
-router.get('/getNotes', function(req, res) {
-    var username = req.session.username;
-
-    var renderNotes = function(err, notes) {
-        if (err) {
-            notes = [{"title": "Couldn't get notes",
-                      "owner": username,
-                      "content": "Error fetching notes!"}];
-        }
-        res.send(notes);
-    }
-    
-    if (username) {
-        notesCollection.find({owner: username}).toArray(renderNotes);
-    } else {
-        res.send([{"title": "Not Logged In",
-                   "owner": "None",
-                   "content": "Nobody seems to be logged in!"}]);
-    }    
 });
 
 router.post('/updateNote', function(req, res) {
@@ -175,6 +176,40 @@ router.post('/newNote', function(req, res) {
     } else {
         res.send("ERROR: Not Logged In");
     }
+});
+
+router.post('/register', function(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+
+    var checkInsert = function(err, newUsers) {
+        if (err) {
+            res.redirect("/?error=Unable to add user");
+        } else {
+            res.redirect("/?error=User " + username +
+                         " successfully registered");
+        }
+    }
+
+    var checkUsername = function(err, user) {
+        if (err) {
+            res.redirect("/?error=unable to check username");
+        } else if (user === null) {
+            var newUser = {
+                username: username,
+                password: password
+            };
+            usersCollection.update({username: username},
+                                   newUser,
+                                   {upsert: true},
+                                   checkInsert);    
+
+        } else {
+            res.redirect("/?error=user already exists");
+        }
+    }
+    
+    usersCollection.findOne({username: username}, checkUsername);
 });
 
 
