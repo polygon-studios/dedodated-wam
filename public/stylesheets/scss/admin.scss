@@ -1,0 +1,94 @@
+body, html{
+	height: 100%;
+	font-family: 'Cabin', sans-serif;
+	background: url("../images/login-bg.png") no-repeat;
+}
+
+input {
+	border: none;
+	border-bottom: 1px solid #FFF;
+	margin: 0.5em 0em;
+	background: none;
+}
+
+input:focus, textarea:focus {
+	border: none;
+	border-bottom: 1px solid #FFF;
+	outline: 0;
+}
+
+
+*:focus {
+    outline: 0;
+}
+
+button {
+	margin: 0.5em 0em;
+	padding: 0.5em;
+	border: none;
+}
+
+.admin {
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	background: rgba(68, 68, 68, 0.75);;
+}
+
+.login{
+	flex: 0 1 auto;
+	min-width: 400px;
+	text-align: center;
+	color: #ECF0F1;
+
+	button {
+		width: 100%;
+	}
+
+	h1{
+		font-weight: 700;
+		font-size: 40px;
+	}
+
+	button {
+		webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+		width: 100%;
+		margin: 0.5em 0em;
+		padding: 0.7em;
+		background-color: #42D08A;
+		font-weight: 700;
+
+		&:hover {
+			background-color: #27AE60;
+		}
+	}
+
+	input {
+		width: 100%;
+		height: 35px;
+		&::-webkit-input-placeholder{
+			color: #FFF;
+			font-style: italic;
+      		margin: 0px;
+		}
+		&::-moz-placeholder{
+			color: #FFF;
+			font-style: italic;
+      		margin: 0px;
+		}
+		&:-ms-input-{
+			color: #FFF;
+			font-style: italic;
+      		margin: 0px;
+		}
+	}
+	
+}

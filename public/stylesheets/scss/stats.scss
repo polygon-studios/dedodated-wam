@@ -1,0 +1,55 @@
+/**
+ * stats.scss
+ * ----------------------------------
+ * Styling for the stats page
+ * @extends 
+ * Bourbon and Neat by Thoughtbot
+ */
+
+@import "bourbon/bourbon";
+@import "grid-settings";
+@import "neat/neat";
+@import "typography";
+
+body, html, .wrapper{
+	height: 100%;
+	font-family: 'Cabin', sans-serif;
+}
+
+header {
+	height: inital;
+	width: 100%;
+	background: #373737;
+	padding: 1em;
+	color: #EAEAE2;
+
+}
+
+.stats {
+	@include outer-container;
+	background: #EAEAE2;
+	padding: 1em 2em;
+	height: 100%;
+	color: #373737;
+}
+
+.players {
+	@include span-columns(12);
+	border: 1px solid #D6D8C9;
+	border-left: 4px solid #DD6264;
+	padding: 1.5em;
+	background: #F2F2F0;
+	margin: 1em 0em;
+
+	table {
+		width: 100%;
+		
+		tr.header {
+			font-weight: bold;
+		}
+
+		td {
+			padding: 0.2em 1em;
+		}
+	}
+}
