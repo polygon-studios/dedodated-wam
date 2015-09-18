@@ -25,16 +25,18 @@ header {
 
 }
 
-.stats {
-	@include outer-container;
-	background: #EAEAE2;
-	padding: 1em 2em;
+.wrapper {
 	height: 100%;
+	background: #EAEAE2;
 	color: #373737;
 }
 
+.stats {
+	dsiplay: flex;
+	padding: 1em 2.5em;
+}
+
 .players {
-	@include span-columns(12);
 	border: 1px solid #D6D8C9;
 	border-left: 4px solid #DD6264;
 	padding: 1.5em;
@@ -43,7 +45,7 @@ header {
 
 	table {
 		width: 100%;
-		
+
 		tr.header {
 			font-weight: bold;
 		}
@@ -52,4 +54,84 @@ header {
 			padding: 0.2em 1em;
 		}
 	}
+
 }
+
+.info {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: stretch;
+	padding: 1em 2em;
+
+	.timer {
+	    position: relative;
+	    float: left;
+	}
+
+	.timer h2 {
+	    text-align:center;
+	    position: absolute;
+	    line-height: 125px;
+	    width: 100%;
+	}
+
+	svg {
+	   -webkit-transform: rotate(-90deg);
+	    transform: rotate(-90deg);
+	}
+
+	.circle_animation {
+	  stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
+	  stroke-dashoffset: 440;
+	  transition: all 1s linear;
+	}
+}
+
+
+
+.time {
+	flex: 1 1 auto;
+	border: 1px solid #D6D8C9;
+	border-left: 4px solid #5AA4DC;
+	padding: 1.5em;
+	background: #F2F2F0;
+	margin: 1em 0.5em;
+	max-width: 400px;
+
+	@media screen and (max-width: 480px) {
+		margin: 1em 0em;
+		max-width: 100%;
+	}
+}
+
+.items {
+	flex: 1 1 auto;
+	border: 1px solid #D6D8C9;
+	border-left: 4px solid #9C5DE1;
+	padding: 1.5em;
+	background: #F2F2F0;
+	margin: 1em 0.5em;
+	max-width: 400px;
+
+	@media screen and (max-width: 480px) {
+		margin: 1em 0em;
+		max-width: 100%;
+	}
+}
+
+.traps {
+	flex: 1 1 auto;
+	border: 1px solid #D6D8C9;
+	border-left: 4px solid #71C27F;
+	padding: 1.5em;
+	background: #F2F2F0;
+	margin: 1em 0.5em;
+	max-width: 400px;
+
+	@media screen and (max-width: 480px) {
+		margin: 1em 0em;
+		max-width: 100%;
+	}
+}
+

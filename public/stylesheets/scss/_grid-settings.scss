@@ -1,3 +1,11 @@
 @import "neat/neat-helpers";
 
-$max-width: 100%;
+$column: golden-ratio(1em, 3) !default; // Column width
+$gutter: golden-ratio(1em, 1) !default; // Gutter between each two columns
+$max-width: em(1920);
+
+// Define your breakpoints
+$tablet: new-breakpoint(max-width 768px 8);
+$mobile: new-breakpoint(max-width 480px 4);
+
+/* FUcking work */
