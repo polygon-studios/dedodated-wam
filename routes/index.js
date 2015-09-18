@@ -81,6 +81,11 @@ router.get('/notes', function(req, res) {
     }
 });
 
+router.get('/connect', function(req, res) {
+    res.json({"Hello": "world"});
+    res.end("Yes");
+});
+
 router.post('/login', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
@@ -177,6 +182,8 @@ router.post('/newNote', function(req, res) {
         res.send("ERROR: Not Logged In");
     }
 });
+
+
 
 
 
