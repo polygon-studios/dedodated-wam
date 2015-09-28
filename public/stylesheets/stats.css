@@ -132,17 +132,24 @@ header {
 .info {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: stretch;
-  padding: 1em 2em; }
+  padding: 1em 2em;
+  text-align: center; }
   .info .timer {
     position: relative;
-    float: left; }
-  .info .timer h2 {
+    width: 100%; }
+  .info h3 {
+    padding-bottom: 1em; }
+  .info .timer h4 {
     text-align: center;
     position: absolute;
-    line-height: 125px;
-    width: 100%; }
+    line-height: 155px;
+    width: 100%;
+    margin: 0; }
+  .info .svg {
+    width: 50%;
+    margin: 0 auto; }
   .info svg {
     -webkit-transform: rotate(-90deg);
     transform: rotate(-90deg); }
@@ -150,7 +157,7 @@ header {
     stroke-dasharray: 440;
     /* this value is the pixel circumference of the circle */
     stroke-dashoffset: 440;
-    transition: all 1s linear; }
+    transition: all 2s ease-in; }
 
 .time {
   flex: 1 1 auto;
