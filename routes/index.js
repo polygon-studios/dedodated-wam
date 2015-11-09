@@ -1,17 +1,21 @@
 /**
  * index.js
  * ----------------------------------
- * Handles requests from the /admin url
- * Provides admin server functionality for the game
+ * Handles requests from the / url
+ * Provides the game funcitonality 
  * @router
  */
 
 
-var express = require('express');
+var express = require('express'),
+    http = require('http');;
 var router = express.Router();
 var mongodb = require('mongodb');
 var mc = mongodb.MongoClient;
 var ObjectID = mongodb.ObjectID;
+var io = require('socket.io')
+
+
 
 var notesCollection, usersCollection;
 
