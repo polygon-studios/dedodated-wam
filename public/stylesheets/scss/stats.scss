@@ -47,7 +47,7 @@ header {
 .players {
 	border: 1px solid #D6D8C9;
 	border-left: 4px solid #DD6264;
-	padding: 1.5em;
+	padding: 1.5em 3em;
 	background: #F2F2F0;
 	margin: 1em 0em;
 
@@ -56,10 +56,19 @@ header {
 
 		tr.header {
 			font-weight: bold;
+			font-size: 1.6em;
+
+			td {
+				padding: 0.2em 0em;
+			}
 		}
 
 		td {
-			padding: 0.2em 1em;
+			padding: 0.2em 0em;
+		}
+
+		.number {
+
 		}
 	}
 
@@ -76,7 +85,7 @@ header {
 
 	text-align: center;
 
-	h3 {
+	h2, h3 {
 		padding-bottom: 1em;
 	}
 }
@@ -127,6 +136,14 @@ header {
 	  stroke-dashoffset: 440;
 	  transition: all 2s ease-in;
 	}
+}
+
+.items, .traps {
+	h3 {
+		padding-top: 0.5em;
+    	font-size: 4em;
+	}
+	
 }
 
 .items {

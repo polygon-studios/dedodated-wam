@@ -124,15 +124,18 @@ header {
 .players {
   border: 1px solid #D6D8C9;
   border-left: 4px solid #DD6264;
-  padding: 1.5em;
+  padding: 1.5em 3em;
   background: #F2F2F0;
   margin: 1em 0em; }
   .players table {
     width: 100%; }
     .players table tr.header {
-      font-weight: bold; }
+      font-weight: bold;
+      font-size: 1.6em; }
+      .players table tr.header td {
+        padding: 0.2em 0em; }
     .players table td {
-      padding: 0.2em 1em; }
+      padding: 0.2em 0em; }
 
 .info {
   display: flex;
@@ -141,7 +144,7 @@ header {
   align-items: stretch;
   padding: 1em 2em;
   text-align: center; }
-  .info h3 {
+  .info h2, .info h3 {
     padding-bottom: 1em; }
 
 .time, .items, .traps {
@@ -178,6 +181,10 @@ header {
     /* this value is the pixel circumference of the circle */
     stroke-dashoffset: 440;
     transition: all 2s ease-in; }
+
+.items h3, .traps h3 {
+  padding-top: 0.5em;
+  font-size: 4em; }
 
 .items {
   border-left: 4px solid #9C5DE1; }

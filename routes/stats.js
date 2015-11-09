@@ -48,7 +48,7 @@ mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {
 router.get('/', function(req, res) {
     console.log("Trying to access stats homepage");
     
-    res.render('stats/index', { title: 'Stats dashboard', 
+    res.render('stats/index', { title: 'Pyjama Jam', 
                            error: req.query.error });
     
 });
