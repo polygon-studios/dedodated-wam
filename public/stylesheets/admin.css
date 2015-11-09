@@ -35,7 +35,7 @@ button {
 
 .login {
   flex: 0 1 auto;
-  min-width: 400px;
+  min-width: 350px;
   text-align: center;
   color: #ECF0F1; }
   .login button {
@@ -70,3 +70,7 @@ button {
       color: #FFF;
       font-style: italic;
       margin: 0px; }
+
+@media screen and (max-width: 480px) {
+  .login {
+    padding: 1em 1em; } }

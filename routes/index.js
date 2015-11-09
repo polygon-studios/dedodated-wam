@@ -13,7 +13,7 @@ var router = express.Router();
 var mongodb = require('mongodb');
 var mc = mongodb.MongoClient;
 var ObjectID = mongodb.ObjectID;
-var io = require('socket.io')
+var io = require('socket.io');
 
 
 
@@ -69,7 +69,7 @@ router.get('/', function(req, res) {
     if (req.session.username) {
         res.redirect("/notes");
     } else {
-        res.render('index', { title: 'CASD', 
+        res.render('index', { title: 'Pyjama Jam', 
                               error: req.query.error });
     }
 });
