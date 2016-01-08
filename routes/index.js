@@ -86,9 +86,13 @@ router.get('/notes', function(req, res) {
 });
 
 router.get('/connect', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
     res.json({"Hello": "world"});
-    res.send("Flibbertygibbet");
     res.end("Yes");
+});
+
+router.get('/pingData', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
 });
 
 router.post('/login', function(req, res) {
