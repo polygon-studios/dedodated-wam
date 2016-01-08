@@ -2,7 +2,7 @@
  * index.js
  * ----------------------------------
  * Handles requests from the / url
- * Provides the game funcitonality 
+ * Provides the game funcitonality
  * @router
  */
 
@@ -24,7 +24,7 @@ mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {
     if (err) {
         throw err;
     }
-    
+
     notesCollection = db.collection('notes');
     usersCollection = db.collection('users');
     console.log("Connected to DBs");
@@ -54,13 +54,13 @@ router.post('/register', function(req, res) {
             usersCollection.update({username: username},
                                    newUser,
                                    {upsert: true},
-                                   checkInsert);    
+                                   checkInsert);
 
         } else {
             res.redirect("/?error=user already exists");
         }
     }
-    
+
     usersCollection.findOne({username: username}, checkUsername);
 });
 
@@ -69,7 +69,7 @@ router.get('/', function(req, res) {
     if (req.session.username) {
         res.redirect("/notes");
     } else {
-        res.render('index', { title: 'Pyjama Jam', 
+        res.render('index', { title: 'Pyjama Jam',
                               error: req.query.error });
     }
 });
@@ -87,22 +87,23 @@ router.get('/notes', function(req, res) {
 
 router.get('/connect', function(req, res) {
     res.json({"Hello": "world"});
+    res.send("Flibbertygibbet");
     res.end("Yes");
 });
 
 router.post('/login', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    
+
     var authenticateUser = function(err, user){
         if (err || user === null || password !== user.password) {
-            res.redirect("/?error=invalid username or password");       
+            res.redirect("/?error=invalid username or password");
         } else {
             req.session.username = username;
             res.redirect("/notes");
         }
     }
-    
+
     usersCollection.findOne({username: username}, authenticateUser);
 });
 
@@ -126,14 +127,14 @@ router.get('/getNotes', function(req, res) {
         }
         res.send(notes);
     }
-    
+
     if (username) {
         notesCollection.find({owner: username}).toArray(renderNotes);
     } else {
         res.send([{"title": "Not Logged In",
                    "owner": "None",
                    "content": "Nobody seems to be logged in!"}]);
-    }    
+    }
 });
 
 router.post('/updateNote', function(req, res) {
@@ -141,7 +142,7 @@ router.post('/updateNote', function(req, res) {
     var id = req.body.id;
     var title = req.body.title;
     var content = req.body.content;
-    
+
     var checkUpdate = function(err, result) {
         if (err) {
             res.send("ERROR: update failed");
@@ -149,7 +150,7 @@ router.post('/updateNote', function(req, res) {
             res.send("update succeeded");
         }
     }
-    
+
     if (username) {
         if (id && title && content) {
             notesCollection.update({_id: ObjectID(id)},
