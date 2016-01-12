@@ -8,12 +8,21 @@
 
 
 var express = require('express'),
-    http = require('http');;
+    http = require('http');
 var router = express.Router();
 var mongodb = require('mongodb');
 var mc = mongodb.MongoClient;
 var ObjectID = mongodb.ObjectID;
-var io = require('socket.io');
+var server = express.Server;
+
+var io = require('socket.io').listen(server);
+
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'DACEHPTYV' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
 
 
 
@@ -92,7 +101,7 @@ router.get('/connect', function(req, res) {
 });
 
 router.get('/pingData', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
+    res.json({"Location-x": "12345"});
 });
 
 router.post('/login', function(req, res) {

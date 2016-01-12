@@ -36,19 +36,15 @@ if (httpsOptions) {
  */
 
 
-var io = require('socket.io').listen(server);
+
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 debug('Express is listening on port' + port);
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
+var io = require('../routes/sockets').listen(server);
+
 
 /**
  * Normalize a port into a number, string, or false.
