@@ -17,15 +17,6 @@ var server = express.Server;
 
 var io = require('socket.io').listen(server);
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'DACEHPTYV' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
-
-
-
 var notesCollection, usersCollection;
 
 mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {

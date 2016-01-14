@@ -11,13 +11,17 @@
  module.exports.listen = function(app){
      io = socketio.listen(app)
 
-     users = io.of('/users')
-     users.on('connection', function(socket){
-         socket.emit('news', { hello: 'DACEHPTYV' });
+     stats = io.of('/stats')
+     stats.on('connection', function(socket){
+         socket.emit('Score', { hello: 'My Kajigger' });
      })
 
      io.on('connection', function(socket){
          socket.emit('news', { hello: 'DACEHPTYV' });
+     })
+
+     io.on('getPositions', function(socket){
+         socket.emit('Position', { fox: 'xereee' });
      })
 
      return io
