@@ -6,7 +6,9 @@
  * @router
  */
 
- var socketio = require('socket.io')
+ var socketio = require('socket.io')({
+ 	transports: ['websocket'],
+ });
 
  module.exports.listen = function(app){
      io = socketio.listen(app)
@@ -16,8 +18,13 @@
          stats.emit('Score', { hello: 'My Kajigger' });
      })
 
+
+
      io.on('connection', function(socket){
-         socket.emit('news', { hello: 'DACEHPTYV' });
+        socket.emit('news', { hello: 'DACEHPTYV' });
+       	socket.on('beep', function(){
+       		socket.emit('boop');
+       	});
      })
 
      io.on('open', function(socket){
