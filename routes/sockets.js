@@ -13,11 +13,15 @@
 
      stats = io.of('/stats')
      stats.on('connection', function(socket){
-         socket.emit('Score', { hello: 'My Kajigger' });
+         stats.emit('Score', { hello: 'My Kajigger' });
      })
 
      io.on('connection', function(socket){
          socket.emit('news', { hello: 'DACEHPTYV' });
+     })
+
+     io.on('open', function(socket){
+         socket.emit('success', { hello: 'World' });
      })
 
      io.on('getPositions', function(socket){
