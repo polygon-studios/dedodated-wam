@@ -25,11 +25,12 @@
        	socket.on('beep', function(){
        		socket.emit('boop');
        	});
-        io.on('open', function(socket){
+        io.on('open', function(){
+            io.emit('success', { hello: 'World' });
             socket.emit('success', { hello: 'World' });
         })
-
-        io.on('getPositions', function(socket){
+        io.on('getPositions', function(){
+            io.emit('Position', { fox: 'xereee' });
             socket.emit('Position', { fox: 'xereee' });
         })
      })
