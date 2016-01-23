@@ -13,9 +13,18 @@
  module.exports.listen = function(app){
      io = socketio.listen(app)
 
-     stats = io.of('/stats')
+     stats = io.of('/stats');
      stats.on('connection', function(socket){
          stats.emit('Score', { hello: 'My Kajigger' });
+     })
+
+
+     mobilia = io.of('/mobilia');
+     mobilia.on('connection', function(socket){
+        mobilia.emit('news', { hello: 'DACEHPTYV' });
+        mobilia.on('beep', function(){
+          mobilia.emit('boop');
+        });
      })
 
 
@@ -24,6 +33,7 @@
         socket.emit('news', { hello: 'DACEHPTYV' });
        	socket.on('beep', function(){
        		socket.emit('boop');
+          mobilia.emit('boop');
        	});
         io.on('open', function(){
             io.emit('success', { hello: 'World' });
