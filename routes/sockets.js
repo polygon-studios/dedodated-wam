@@ -7,7 +7,7 @@
  */
 
  var socketio = require('socket.io')({
- 	transports: ['websocket'],
+ 	transports: ['websocket', 'polling'],
  });
 
  module.exports.listen = function(app){
@@ -25,6 +25,13 @@
        	socket.on('beep', function(){
        		socket.emit('boop');
        	});
+        io.on('open', function(socket){
+            socket.emit('success', { hello: 'World' });
+        })
+
+        io.on('getPositions', function(socket){
+            socket.emit('Position', { fox: 'xereee' });
+        })
      })
 
      io.on('open', function(socket){
