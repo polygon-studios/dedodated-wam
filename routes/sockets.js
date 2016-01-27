@@ -27,24 +27,22 @@
 
         socket.on('beep', function(){
          mobilia.emit('boop');
+         unity.emit('boop');
        });
      })
 
 
      // Unity 'room'
-     io.on('connection', function(socket){
-        socket.emit('news', { hello: 'Unity' });
+     unity = io.of('/');
+     unity.on('connection', function(socket){
+        unity.emit('news', { hello: 'Unity' });
        	socket.on('beep', function(){
-       		socket.emit('boop');
+       		unity.emit('boop');
           mobilia.emit('unity');
        	});
-        io.on('open', function(){
-            io.emit('success', { hello: 'World' });
-            socket.emit('success', { hello: 'World' });
-        })
-        io.on('getPositions', function(){
-            io.emit('Position', { fox: 'xereee' });
-            socket.emit('Position', { fox: 'xereee' });
+        socket.on('getPositions', function(){
+            unity.emit('Position', { fox: 'xereee' });
+            mobilia.emit('Position', { fox: 'xereee' });
         })
      })
 
