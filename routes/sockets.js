@@ -26,9 +26,13 @@
         mobilia.emit('news', { hello: 'Mobilia' });
 
         socket.on('beep', function(){
-         mobilia.emit('boop');
-         unity.emit('boop');
-       });
+           mobilia.emit('boop');
+           unity.emit('boop');
+        });
+
+        socket.on('trap-Place', function (data) {
+          unity.emit('trapPlace', data);
+        });
      })
 
 
