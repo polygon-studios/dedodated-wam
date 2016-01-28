@@ -31,7 +31,7 @@
         });
 
         socket.on('trap-Place', function (data) {
-          unity.send('trapPlace', data);
+          unity.emit('trapPlace', data);
         });
      })
 
