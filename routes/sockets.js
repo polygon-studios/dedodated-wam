@@ -23,7 +23,7 @@
      mobilia = io.of('/mobilia');
      mobilia.on('connection', function(socket){
         //socket.join('mobilia');
-        mobilia.emit('news', { hello: 'Mobilia' });
+        mobilia.emit('connected', { hello: 'Mobilia' });
 
         socket.on('beep', function(){
            mobilia.emit('boop');
@@ -48,14 +48,6 @@
             unity.emit('Position', { fox: 'xereee' });
             mobilia.emit('Position', { fox: 'xereee' });
         })
-     })
-
-     io.on('open', function(socket){
-         socket.emit('success', { hello: 'World' });
-     })
-
-     io.on('getPositions', function(socket){
-         socket.emit('Position', { fox: 'xereee' });
      })
 
      return io

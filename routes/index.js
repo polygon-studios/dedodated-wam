@@ -1,8 +1,8 @@
 /**
  * index.js
  * ----------------------------------
- * Handles requests from the / url
- * Provides the game funcitonality
+ * Handles GET & POST requests from the / url
+ * Provides database connections
  * @router
  */
 
