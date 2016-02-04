@@ -48,6 +48,13 @@
             unity.emit('Position', { fox: 'xereee' });
             mobilia.emit('Position', { fox: 'xereee' });
         })
+        socket.on('playerPositions', function (data) {
+          mobilia.emit('playerPositions', data);
+        });
+     })
+
+     unity.on('disconnect', function(socket){
+        mobilia.emit('gameEnd', { goodbye: 'From Unity' });
      })
 
      return io
