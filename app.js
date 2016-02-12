@@ -19,6 +19,7 @@ var MongoStore = require('connect-mongo')(session);
 var routes = require('./routes/index');
 var stats = require('./routes/stats');
 var admin = require('./routes/admin');
+var about = require('./routes/about');
 
 var app = express();
 
@@ -54,6 +55,7 @@ app.use('/', routes);
 app.use('/admin', admin);
 app.use('/admin/:page', admin);
 app.use('/stats', stats);
+app.use('/about', about);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

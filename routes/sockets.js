@@ -51,6 +51,7 @@
         socket.on('playerPositions', function (data) {
           mobilia.emit('playerPositions', data);
         });
+        
      })
 
      unity.on('disconnect', function(socket){

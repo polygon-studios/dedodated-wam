@@ -1,0 +1,460 @@
+extends layout
+
+block header
+
+
+block content
+  nav.navbar.navbar-inverse.navbar-transparent.navbar-fixed-top(role='navigation')
+    .container
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button#menu-toggle.navbar-toggle(type='button')
+            span.sr-only Toggle navigation
+            span.icon-bar.bar1
+            span.icon-bar.bar2
+            span.icon-bar.bar3
+          a.navbar-brand(href='#')
+            i.fa.fa-bolt.fa-spin
+            |  Pyjama Jam
+        // Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='#about')
+                | What is Pyjama Jam?
+            li
+              a(href='#play')
+                | How to play
+            li
+              a(href='#team')
+                | The Team
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                | See it in Action
+                b.caret
+              ul.dropdown-menu.dropdown-with-icons
+                li
+                  a(href='ecommerce.html')
+                    i.pe-7s-ticket
+                    |  Store Page
+                li
+                  a(href='product-page.html')
+                    i.pe-7s-piggy
+                    |  Product Page
+  .wrapper
+    .parallax.filter-black
+      .parallax-image
+        img(src='/img/login-bg.png')
+      .small-info
+        h1.hidden-xs.hidden-sm
+          | Pyjama Jamaica
+        h3.hidden-xs.hidden-sm
+          | Lorizzle ipsum bling bling sit amizzle, consectetuer adipiscing elit.
+        .col-md-2.col-md-offset-5.text-center.visible-xs.visible-sm
+          .card.card-plain
+            h5.small
+              | Looking for the mobile app? Look no further
+            button.btn.btn-block.btn-lg.btn-fill.btn-info.btn-stumbleupon(href='#fakelink') Get Playing!
+
+    .section
+      .container
+        h2.section-title What is Pyjama Jam?
+        .row
+          .col-md-6
+            p
+              | Bacon ipsum dolor amet picanha landjaeger short loin, jerky shank strip steak pork chop chuck meatball. Shoulder turkey pork kevin. Jerky strip steak ball tip short ribs short loin bacon ground round pork belly shank leberkas beef ribs. Cupim tri-tip turkey picanha ham hock turducken alcatra tenderloin filet mignon, bacon capicola pork chicken.
+            p
+              | Capicola jerky shoulder beef pastrami ham hock. Bacon ribeye shank ham pork pig frankfurter, beef brisket pastrami jowl. Turkey t-bone swine, ball tip alcatra short ribs jerky hamburger leberkas cupim pork chop turducken drumstick sausage.
+
+          .col-md-6
+            .card.card-plain
+              .image
+                img(src='/img/login-bg.png', alt='...')
+                .filter
+                  button.btn.btn-neutral.btn-simple(type='button')
+                    i.fa.fa-image
+                    |  View Image
+    .section.section-gray
+      .container
+        h2.section-title How to Play
+        .row
+          .col-md-6
+            .card.card-product
+                .image
+                  #card-product-carousel.carousel.slide(data-ride='carousel')
+                    // Wrapper for slides
+                    .carousel-inner
+                      .item.active
+                        img(src='/img/login-bg.png', alt='')
+                      .item
+                        img(src='/img/login-bg.png', alt='')
+                      .item
+                        img(src='/img/login-bg.png', alt='')
+                    // Controls
+                    a.left.carousel-control(href='#card-product-carousel', data-slide='prev')
+                      span.fa.fa-angle-left
+                    a.right.carousel-control(href='#card-product-carousel', data-slide='next')
+                      span.fa.fa-angle-right
+                .content
+                  a(href='#')
+                    h4.title XBox controller
+                  p.description
+                    | Grab an one and play as one of the 4 main characters!
+                  p.description
+                    | Collect items for points or use them on your friends
+                  .footer
+                    span.price.price Action packed
+                    button.btn.btn-default.btn-fill.pull-right.btn-xs.btn-hover
+                      i.fa.fa-star
+              // end card
+          .col-md-6
+            .card.card-product
+                .image
+                  #card-product-carousel.carousel.slide(data-ride='carousel')
+                    // Wrapper for slides
+                    .carousel-inner
+                      .item.active
+                        img(src='/img/login-bg.png', alt='')
+                      .item
+                        img(src='/img/login-bg.png', alt='')
+                      .item
+                        img(src='/img/login-bg.png', alt='')
+                    // Controls
+                    a.left.carousel-control(href='#card-product-carousel', data-slide='prev')
+                      span.fa.fa-angle-left
+                    a.right.carousel-control(href='#card-product-carousel', data-slide='next')
+                      span.fa.fa-angle-right
+                .content
+                  a(href='#')
+                    h4.title Mobile
+                  p.description
+                    | Use your own phone and jump in on the action!
+                  p.description
+                    | Connect to the website and place traps to mess up your friends!
+                  .footer
+                    span.price.price Keep yourself entertained
+                    button.btn.btn-default.btn-fill.pull-right.btn-xs.btn-hover
+                      i.fa.fa-star
+              // end card
+    .section
+      .container
+        h2.section-title See it in Action
+        .row
+          .col-md-4
+            .card.card-plain
+              .image
+                img(src='/img/login-bg.png', alt='...')
+                .filter
+                  button.btn.btn-neutral.btn-simple(type='button')
+                    i.fa.fa-image
+                    |  View Image
+            // end card
+          .col-md-8
+            .card.card-plain
+              .image
+                img(src='/img/login-bg.png', alt='...')
+                .filter
+                  button.btn.btn-neutral.btn-simple(type='button')
+                    i.fa.fa-image
+                    |  View Image
+            // end card
+          .col-md-8
+            .card.card-plain
+              .image
+                img(src='/img/login-bg.png', alt='...')
+                .filter
+                  button.btn.btn-neutral.btn-simple(type='button')
+                    i.fa.fa-image
+                    |  View Image
+            // end card
+          .col-md-4
+            .card.card-plain
+              .image
+                img(src='/img/login-bg.png', alt='...')
+                .filter
+                  button.btn.btn-neutral.btn-simple(type='button')
+                    i.fa.fa-image
+                    |  View Image
+            // end card
+          .col-md-4
+            .card.card-plain
+              .image
+                img(src='/img/login-bg.png', alt='...')
+                .filter
+                  button.btn.btn-neutral.btn-simple(type='button')
+                    i.fa.fa-image
+                    |  View Image
+            // end card
+          .col-md-4
+            .card.card-plain
+              .image
+                img(src='/img/login-bg.png', alt='...')
+                .filter
+                  button.btn.btn-neutral.btn-simple(type='button')
+                    i.fa.fa-image
+                    |  View Image
+            // end card
+          .col-md-4
+            .card.card-plain
+              .image
+                img(src='/img/login-bg.png', alt='...')
+                .filter
+                  button.btn.btn-neutral.btn-simple(type='button')
+                    i.fa.fa-image
+                    |  View Image
+            // end card
+    // end section see it in action
+    .section.section-gray
+      .container
+        h2.section-title
+          | The Team
+        .team-presentation
+          .row
+            .col-md-4
+              .card.card-user
+                .image
+                  img(src='/img/login-bg.png')
+                .content
+                  .author
+                    a(href='#')
+                      img.avatar(src='/img/faces-01.png', alt='...')
+                      h4.title
+                        | Ian Clarke
+                        br
+                        small Team Member
+                  p.description.text-center
+                    i.fa.fa-user.fa-fw.text-muted
+                    |  Front-End Developer
+                    br
+                    i.fa.fa-building-o.fa-fw.text-muted
+                    |  Networking Programmer
+                    br
+                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    |  Unity Programmer
+                hr
+                .text-center
+                  button.btn.btn-social.btn-facebook.btn-simple(href='#')
+                    i.fa.fa-facebook-square
+                  button.btn.btn-social.btn-twitter.btn-simple(href='www.twitter.com/tridotdesigns')
+                    i.fa.fa-twitter
+                  button.btn.btn-social.btn-github.btn-simple(href='www.github.com/iryanclarke')
+                    i.fa.fa-github
+              // end card
+            .col-md-4
+              .card.card-user
+                .image
+                  img(src='/img/login-bg.png')
+                .content
+                  .author
+                    a(href='#')
+                      img.avatar(src='/img/default-avatar.png', alt='...')
+                      h4.title
+                        | Tegan Scott
+                        br
+                        small Team Lead
+                  p.description.text-center
+                    i.fa.fa-user.fa-fw.text-muted
+                    |  Projection Mapper
+                    br
+                    i.fa.fa-building-o.fa-fw.text-muted
+                    |  Unity Programmer
+                    br
+                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    |  Room set-up
+                hr
+                .text-center
+                  button.btn.btn-social.btn-facebook.btn-simple(href='#')
+                    i.fa.fa-facebook-square
+                  button.btn.btn-social.btn-twitter.btn-simple(href='#')
+                    i.fa.fa-twitter
+              // end card
+            .col-md-4
+              .card.card-user
+                .image
+                  img(src='/img/login-bg.png')
+                .content
+                  .author
+                    a(href='#')
+                      img.avatar(src='/img/faces-02.png', alt='...')
+                      h4.title
+                        | Kiera Lundberg
+                        br
+                        small Team Member
+                  p.description.text-center
+                    i.fa.fa-user.fa-fw.text-muted
+                    |  Environment Designer
+                    br
+                    i.fa.fa-building-o.fa-fw.text-muted
+                    |  User testing
+                    br
+                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    |  Item Designer
+                hr
+                .text-center
+                  button.btn.btn-social.btn-twitter.btn-simple(href='#')
+                    i.fa.fa-twitter
+                  button.btn.btn-social.btn-github.btn-simple(href='#')
+                    i.fa.fa-github
+          .row
+            .col-md-4.col-md-offset-1
+              .card.card-user
+                .image
+                  img(src='/img/login-bg.png')
+                .content
+                  .author
+                    a(href='#')
+                      img.avatar(src='/img/faces-03.png', alt='...')
+                      h4.title
+                        | Mike Zani
+                        br
+                        small Team Member
+                  p.description.text-center
+                    i.fa.fa-user.fa-fw.text-muted
+                    |  Music composer
+                    br
+                    i.fa.fa-building-o.fa-fw.text-muted
+                    |  Enemy designer
+                    br
+                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    |  House designer
+                hr
+                .text-center
+                  button.btn.btn-social.btn-facebook.btn-simple(href='#')
+                    i.fa.fa-facebook-square
+                  button.btn.btn-social.btn-twitter.btn-simple(href='#')
+                    i.fa.fa-twitter
+                  button.btn.btn-social.btn-google.btn-simple(href='#')
+                    i.fa.fa-google-plus-square
+              // end card
+            .col-md-4.col-md-offset-1
+              .card.card-user
+                .image
+                  img(src='/img/login-bg.png')
+                .content
+                  .author
+                    a(href='#')
+                      img.avatar(src='/img/default-avatar.png', alt='...')
+                      h4.title
+                        | Andrzej Banas
+                        br
+                        small Team Member
+                  p.description.text-center
+                    i.fa.fa-user.fa-fw.text-muted
+                    |  Level Designer
+                    br
+                    i.fa.fa-building-o.fa-fw.text-muted
+                    |  Character Designer
+                    br
+                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    |  Gameplay testing
+                hr
+                .text-center
+                  button.btn.btn-social.btn-facebook.btn-simple(href='#')
+                    i.fa.fa-facebook-square
+                  button.btn.btn-social.btn-twitter.btn-simple(href='#')
+                    i.fa.fa-twitter
+              // end card
+    // end section meet our team
+    footer.footer.footer-big.footer-transparent(style="background-image: url('http://37.media.tumblr.com/d77e21ed167c2125627b210b48e23f81/tumblr_na0kw25OtD1st5lhmo1_1280.jpg');")
+      .container
+        .row
+          .col-md-3
+            h5.title Looking for something?
+            nav
+              ul
+                li
+                  a(href='/')
+                    | Mobile App
+                li
+                  a(href='/stats')
+                    | Dashboard
+                li
+                  a(href='/admin')
+                    | Admin
+          .col-md-3
+            h5.title External Links
+            nav
+              ul
+                li
+                  a(href='#')
+                    | Carleton University
+                li
+                  a(href='#')
+                    | BIT Degree
+                li
+                  a(href='#')
+                    | Algonquin College
+                li
+                  a(href='#')
+                    | Senior Project 2016
+          .col-md-3
+            .card.card-product
+                .image
+                  #card-product-carousel.carousel.slide(data-ride='carousel')
+                    // Wrapper for slides
+                    .carousel-inner
+                      .item.active
+                        img(src='/img/login-bg.png', alt='')
+                      .item
+                        img(src='/img/login-bg.png', alt='')
+                      .item
+                        img(src='/img/login-bg.png', alt='')
+                    // Controls
+                    a.left.carousel-control(href='#card-product-carousel', data-slide='prev')
+                      span.fa.fa-angle-left
+                    a.right.carousel-control(href='#card-product-carousel', data-slide='next')
+                      span.fa.fa-angle-right
+                .content
+                  p.description
+                    | Special thanks to
+            // end card
+          .col-md-3
+            h5.title The numbaaaz
+            nav.numbers
+              ul
+                li
+                  h4
+                    | 13
+                    games played
+                li
+                  h4
+                    | 2,203
+                    traps placed
+                li
+                  h4
+                    | 10,293
+                    items collected
+        hr
+        .social-area.text-center
+          h5 Join us on
+          a.btn.btn-social.btn-round(href='#')
+            i.fa.fa-facebook
+          a.btn.btn-social.btn-round(href='#')
+            i.fa.fa-twitter
+          a.btn.btn-social.btn-round(href='#')
+            i.fa.fa-linkedin
+          .copyright
+            | &copy; 2016&nbsp;
+            a(href='http://www.github.com/polygon-studios') Polygon Studios
+            | , baaaaaaa
+            i.fa.fa-heart
+    // wrapper
+
+    // jQuery and Bootstrap core files
+    script(src='/js/jquery.js', type='text/javascript')
+    script(src='/js/jquery-ui.custom.min.js', type='text/javascript')
+    script(src='/libs/bootstrap3/js/bootstrap.min.js', type='text/javascript')
+    // Plugins
+    script(src='/js/gsdk-checkbox.js')
+    script(src='/js/gsdk-morphing.js')
+    script(src='/js/gsdk-radio.js')
+    script(src='/js/gsdk-bootstrapswitch.js')
+    script(src='/js/bootstrap-select.js')
+    script(src='./js/bootstrap-datepicker.js')
+    script(src='/js/chartist.min.js')
+    script(src='/js/jquery.tagsinput.js')
+    script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js')
+    // Get Shit Done Kit PRO Core javascript
+    script(src='/js/get-shit-done.js')
+
+    script(src='/javascripts/about-us.js')
