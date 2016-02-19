@@ -1,4 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Grand+Hotel|Open+Sans:400,300);
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Helvetica Neue","Open Sans",Arial,sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
 #world {
   background: linear-gradient(#E6E6E6, #EBFFEA);
   position:absolute;
@@ -6,39 +15,7 @@
   height:100%;
   overflow:hidden;
 }
-#instructions{
-  position:absolute;
-  width:100%;
-  top:50%;
-  margin: auto;
-  margin-top:120px;
-  font-family:'Open Sans', sans-serif;
-  color:#fdde8c;
-  font-size:.8em;
-  text-transform: uppercase;
-  text-align : center;
-  line-height : 1.5;
-  user-select: none;
-}
-.lightInstructions {
-  color:#f89a78;
-  font-size:.9em;
-}
-#credits{
-  position:absolute;
-  width:100%;
-  margin: auto;
-  bottom:0;
-  margin-bottom:20px;
-  font-family:'Open Sans', sans-serif;
-  color:#f7575f;
-  font-size:0.6em;
-  text-transform: uppercase;
-  text-align : center;
-}
-#credits a {
-  color:#f7575f;
-}
+
 #traps {
   position: fixed;
   bottom: 0;
@@ -48,16 +25,22 @@
   width: 50%;
   left: 25%;
   padding: 5px;
+  display: flex;
 }
 .trap {
   background-color: #EFEFEF;
   margin: 0px 7px 5px 7px;
   text-align: center;
   float: left;
-  width: 28%;
-  font-family:'Open Sans', sans-serif;
+  width: 30%;
 }
 
 .selected {
   background-color: #FF9500;
+}
+
+@media only screen and (max-width: 640px) {
+  .trap {
+    width: 28%;
+  }
 }

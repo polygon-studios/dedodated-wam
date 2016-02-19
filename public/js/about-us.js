@@ -20,3 +20,9 @@ var parallax = function() {
     oVal = ($(window).scrollTop() / 3);
     big_image.css('top',oVal);
 };
+
+function scrollTo(link) {
+  try {
+    $('html, body').animate({scrollTop:$(link).position().top - 50 }, 'slow');
+  } catch(err){}
+}

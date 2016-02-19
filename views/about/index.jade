@@ -20,27 +20,21 @@ block content
         .collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
             li
-              a(href='#about')
+              a(onclick="scrollTo('.about');")
                 | What is Pyjama Jam?
             li
-              a(href='#play')
+              a(onclick="scrollTo('.play');")
                 | How to play
             li
-              a(href='#team')
-                | The Team
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown')
+              a(onclick="scrollTo('.action');")
                 | See it in Action
-                b.caret
-              ul.dropdown-menu.dropdown-with-icons
-                li
-                  a(href='ecommerce.html')
-                    i.pe-7s-ticket
-                    |  Store Page
-                li
-                  a(href='product-page.html')
-                    i.pe-7s-piggy
-                    |  Product Page
+            li
+              a(onclick="scrollTo('.team');")
+                | The Team
+
+
+
+
   .wrapper
     .parallax.filter-black
       .parallax-image
@@ -56,7 +50,7 @@ block content
               | Looking for the mobile app? Look no further
             button.btn.btn-block.btn-lg.btn-fill.btn-info.btn-stumbleupon(href='#fakelink') Get Playing!
 
-    .section
+    .section.about
       .container
         h2.section-title What is Pyjama Jam?
         .row
@@ -74,7 +68,7 @@ block content
                   button.btn.btn-neutral.btn-simple(type='button')
                     i.fa.fa-image
                     |  View Image
-    .section.section-gray
+    .section.section-gray.play
       .container
         h2.section-title How to Play
         .row
@@ -136,7 +130,7 @@ block content
                     button.btn.btn-default.btn-fill.pull-right.btn-xs.btn-hover
                       i.fa.fa-star
               // end card
-    .section
+    .section.action
       .container
         h2.section-title See it in Action
         .row
@@ -204,7 +198,7 @@ block content
                     |  View Image
             // end card
     // end section see it in action
-    .section.section-gray
+    .section.section-gray.team
       .container
         h2.section-title
           | The Team
@@ -223,13 +217,13 @@ block content
                         br
                         small Team Member
                   p.description.text-center
-                    i.fa.fa-user.fa-fw.text-muted
+                    i.fa.fa-code.fa-fw.text-muted
                     |  Front-End Developer
                     br
-                    i.fa.fa-building-o.fa-fw.text-muted
+                    i.fa.fa-cloud-download.fa-fw.text-muted
                     |  Networking Programmer
                     br
-                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    i.fa.fa-crosshairs.fa-fw.text-muted
                     |  Unity Programmer
                 hr
                 .text-center
@@ -253,13 +247,13 @@ block content
                         br
                         small Team Lead
                   p.description.text-center
-                    i.fa.fa-user.fa-fw.text-muted
+                    i.fa.fa-picture-o.fa-fw.text-muted
                     |  Projection Mapper
                     br
-                    i.fa.fa-building-o.fa-fw.text-muted
+                    i.fa.fa-crosshairs.fa-fw.text-muted
                     |  Unity Programmer
                     br
-                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    i.fa.fa-wrench.fa-fw.text-muted
                     |  Room set-up
                 hr
                 .text-center
@@ -281,13 +275,13 @@ block content
                         br
                         small Team Member
                   p.description.text-center
-                    i.fa.fa-user.fa-fw.text-muted
+                    i.fa.fa-map-o.fa-fw.text-muted
                     |  Environment Designer
                     br
-                    i.fa.fa-building-o.fa-fw.text-muted
+                    i.fa.fa-user-plus.fa-fw.text-muted
                     |  User testing
                     br
-                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    i.fa.fa-paint-brush.fa-fw.text-muted
                     |  Item Designer
                 hr
                 .text-center
@@ -309,13 +303,13 @@ block content
                         br
                         small Team Member
                   p.description.text-center
-                    i.fa.fa-user.fa-fw.text-muted
+                    i.fa.fa-music.fa-fw.text-muted
                     |  Music composer
                     br
-                    i.fa.fa-building-o.fa-fw.text-muted
+                    i.fa.fa-magic.fa-fw.text-muted
                     |  Enemy designer
                     br
-                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    i.fa.fa-paint-brush.fa-fw.text-muted
                     |  House designer
                 hr
                 .text-center
@@ -339,13 +333,13 @@ block content
                         br
                         small Team Member
                   p.description.text-center
-                    i.fa.fa-user.fa-fw.text-muted
+                    i.fa.fa-map.fa-fw.text-muted
                     |  Level Designer
                     br
-                    i.fa.fa-building-o.fa-fw.text-muted
+                    i.fa.fa-paint-brush.fa-fw.text-muted
                     |  Character Designer
                     br
-                    i.fa.fa-envelope-o.fa-fw.text-muted
+                    i.fa.fa-gamepad.fa-fw.text-muted
                     |  Gameplay testing
                 hr
                 .text-center
@@ -355,7 +349,7 @@ block content
                     i.fa.fa-twitter
               // end card
     // end section meet our team
-    footer.footer.footer-big.footer-transparent(style="background-image: url('http://37.media.tumblr.com/d77e21ed167c2125627b210b48e23f81/tumblr_na0kw25OtD1st5lhmo1_1280.jpg');")
+    footer.footer.footer-big.footer-transparent(style="background-image: url('/img/login-bg.png');")
       .container
         .row
           .col-md-3
@@ -457,4 +451,4 @@ block content
     // Get Shit Done Kit PRO Core javascript
     script(src='/js/get-shit-done.js')
 
-    script(src='/javascripts/about-us.js')
+    script(src='/js/about-us.js')
