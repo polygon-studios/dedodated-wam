@@ -44,14 +44,11 @@
        		unity.emit('boop');
           mobilia.emit('unity');
        	});
-        socket.on('getPositions', function(){
-            unity.emit('Position', { fox: 'xereee' });
-            mobilia.emit('Position', { fox: 'xereee' });
-        })
+        
         socket.on('playerPositions', function (data) {
           mobilia.emit('playerPositions', data);
         });
-        
+
      })
 
      unity.on('disconnect', function(socket){

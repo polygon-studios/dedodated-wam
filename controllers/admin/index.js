@@ -16,6 +16,7 @@ var router = express.Router();
 var mongodb = require('mongodb');
 var mc = mongodb.MongoClient;
 var ObjectID = mongodb.ObjectID;
+var Users = require('../../models/admin/users')
 
 var notesCollection, usersCollection;
 
@@ -106,19 +107,14 @@ router.post('/login', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
 
-    var authenticateUser = function(err, user){
-        if (err || user === null || password !== user.password) {
-            res.redirect("/admin/?error=invalid username or password");
-        } else {
-            console.log("Username: %s", user);
-            console.log("Entered pass: %s", password);
-            console.log("User pass: %s", user.password);
-            req.session.username = username;
-            res.redirect("/admin/notes");
-        }
-    }
-
-    usersCollection.findOne({username: username}, authenticateUser);
+    Users.authenticate(username, password, function (err, user) {
+      if (err || user === null || password !== user.password) {
+          res.redirect("/admin/?error=invalid username or password");
+      } else {
+          req.session.username = username;
+          res.redirect("/admin/notes");
+      }
+    });
 });
 
 router.post('/logout', function(req, res) {
