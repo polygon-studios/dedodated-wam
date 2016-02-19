@@ -11,10 +11,14 @@ html
 
     title= title
 
-    // Fonts and icons d
+    link(href='/libs/bootstrap3/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/stylesheets/dashboard/css/gsdk.css', rel='stylesheet')
+    link(href='/stylesheets/dashboard/css/examples.css', rel='stylesheet')
+
+    // Fonts and icons
     link(href='http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
     link(href='https://fonts.googleapis.com/css?family=Grand+Hotel|Open+Sans:400,300', rel='stylesheet', type='text/css')
+    link(href='/stylesheets/dashboard/css/pe-icon-7-stroke.css', rel='stylesheet')
     block header
-    
-  body(role="document")
+  body(role="document").about-us
     block content

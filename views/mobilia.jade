@@ -1,0 +1,23 @@
+extends layout
+
+block header
+  link(href='/stylesheets/mobilia/main.css', rel='stylesheet')
+  script(type='text/javascript', src='/js/mobilia/three.min.js')
+  script(type='text/javascript', src='/js/mobilia/OrbitControls.js')
+  script(type='text/javascript', src='/js/mobilia/physii.js')
+  script(type='text/javascript', src='https://cdn.socket.io/socket.io-1.3.7.js')
+  script(type='text/javascript', src='/js/mobilia/platforms.json')
+  script(type='text/javascript', src='/js/mobilia/socketio.js')
+  script(type='text/javascript', src='https://code.jquery.com/jquery-2.2.0.min.js')
+  script(type='text/javascript', src='/js/mobilia/main.js')
+
+
+block content
+  #world
+  #traps
+      .bramble.trap.selected
+        h3 Bramble
+      .button.trap
+        h3 Button
+      .pinecone.trap
+        h3 Pinecone

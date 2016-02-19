@@ -1,7 +1,7 @@
 /**
- * admin.js
+ * admin/index.js
  * ----------------------------------
- * Handles requests from the /admin url
+ * Handles GET & POST requests from the '/admin' url
  * Provides admin server functionality for the game
  * @router
  */
@@ -28,7 +28,7 @@ mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {
     if (err) {
         throw err;
     }
-    
+
     notesCollection = db.collection('notes');
     usersCollection = db.collection('users');
     console.log("Connected to DBs");
@@ -39,7 +39,7 @@ mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {
 /**
  & GET Functions
  & ----------------------------------
- & Handles GET requests from the admin area 
+ & Handles GET requests from the admin area
  & Provides admin server functionality for the game
  & %GET%
  */
@@ -51,7 +51,7 @@ router.get('/', function(req, res) {
     if (req.session.username) {
         res.redirect("admin/notes");
     } else {
-        res.render('admin/index', { title: 'SIGN IN', 
+        res.render('admin/index', { title: 'SIGN IN',
                               error: req.query.error });
     }
 });
@@ -83,21 +83,21 @@ router.get('/getNotes', function(req, res) {
         }
         res.send(notes);
     }
-    
+
     if (username) {
         notesCollection.find({owner: username}).toArray(renderNotes);
     } else {
         res.send([{"title": "Not Logged In",
                    "owner": "None",
                    "content": "Nobody seems to be logged in!"}]);
-    }    
+    }
 });
 
 
 /**
  & POST Functions
  & ----------------------------------
- & Handles POST requests from the admin area 
+ & Handles POST requests from the admin area
  & Provides admin server functionality for the game
  & %POST%
  */
@@ -105,10 +105,10 @@ router.get('/getNotes', function(req, res) {
 router.post('/login', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    
+
     var authenticateUser = function(err, user){
         if (err || user === null || password !== user.password) {
-            res.redirect("/admin/?error=invalid username or password");     
+            res.redirect("/admin/?error=invalid username or password");
         } else {
             console.log("Username: %s", user);
             console.log("Entered pass: %s", password);
@@ -117,7 +117,7 @@ router.post('/login', function(req, res) {
             res.redirect("/admin/notes");
         }
     }
-    
+
     usersCollection.findOne({username: username}, authenticateUser);
 });
 
@@ -136,7 +136,7 @@ router.post('/updateNote', function(req, res) {
     var id = req.body.id;
     var title = req.body.title;
     var content = req.body.content;
-    
+
     var checkUpdate = function(err, result) {
         if (err) {
             res.send("ERROR: update failed");
@@ -144,7 +144,7 @@ router.post('/updateNote', function(req, res) {
             res.send("update succeeded");
         }
     }
-    
+
     if (username) {
         if (id && title && content) {
             notesCollection.update({_id: ObjectID(id)},
@@ -206,13 +206,13 @@ router.post('/register', function(req, res) {
             usersCollection.update({username: username},
                                    newUser,
                                    {upsert: true},
-                                   checkInsert);    
+                                   checkInsert);
 
         } else {
             res.redirect("/admin/?error=user already exists");
         }
     }
-    
+
     usersCollection.findOne({username: username}, checkUsername);
 });
 

@@ -16,14 +16,13 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
-var routes = require('./routes/index');
-var stats = require('./routes/stats');
-var admin = require('./routes/admin');
-var about = require('./routes/about');
+var mobilia   = require('./controllers/mobilia/index');
+var stats     = require('./controllers/stats');
+var admin     = require('./controllers/admin/index');
+var about     = require('./controllers/about/index');
+var dashboard = require('./controllers/dashboard/index');
 
 var app = express();
-
-
 
 /*
 app.httpsOptions = {
@@ -51,11 +50,12 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', mobilia);
 app.use('/admin', admin);
 app.use('/admin/:page', admin);
 app.use('/stats', stats);
 app.use('/about', about);
+app.use('/dashboard', dashboard);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
