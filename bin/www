@@ -14,7 +14,7 @@ var http, server;
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '4000');
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -40,6 +40,10 @@ server.on('error', onError);
 server.on('listening', onListening);
 debug('Express is listening on port' + port);
 
+
+/**
+  * Load in websocket logic
+  */
 var io = require('../middlewares/sockets').listen(server);
 
 

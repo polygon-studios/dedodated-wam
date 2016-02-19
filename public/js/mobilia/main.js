@@ -55,8 +55,6 @@ $( document ).ready(function() {
   });
 });
 
-
-
 window.onload = function () {
 
   //THREEJS RELATED VARIABLES
@@ -117,7 +115,6 @@ window.onload = function () {
     document.addEventListener('mousedown', handleMouseDown, false);
     document.addEventListener('touchstart', handleTouchStart, false);
     document.addEventListener('touchend', handleTouchEnd, false);
-    document.addEventListener('touchmove',handleTouchMove, false);
 
     // Setting up camera controls & restrictions
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -133,6 +130,7 @@ window.onload = function () {
     controls.dampingFactor = 0.5;
   }
 
+  // Recalculate width and height on window resize
   function onWindowResize() {
     HEIGHT = window.innerHeight;
     WIDTH = window.innerWidth;
@@ -145,15 +143,9 @@ window.onload = function () {
   }
 
   function handleTouchStart(event) {
-    if (event.touches.length > 1) {
-      //event.preventDefault();
-      //mousePos = {x:event.touches[0].pageX, y:event.touches[0].pageY};
-      socket.emit('open');
-    }
   }
 
   function handleTouchEnd(event) {
-      //mousePos = {x:windowHalfX, y:windowHalfY};
   }
 
   function handleMouseDown(event) {
@@ -161,7 +153,6 @@ window.onload = function () {
       mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
   		mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
       raycaster.setFromCamera( mouse, camera );
-
 
       var intersects = raycaster.intersectObjects( scene.children );
 
@@ -190,13 +181,7 @@ window.onload = function () {
         placeTrap(posX, posY, trapType);
   }
 
-  function handleTouchMove(event) {
-    if (event.touches.length == 1) {
-      //event.preventDefault();
-      //mousePos = {x:event.touches[0].pageX, y:event.touches[0].pageY};
-    }
-  }
-
+  // Create scene lights
   function createLights() {
     light = new THREE.HemisphereLight(0xffffff, 0xffffff, .5);
 
@@ -214,12 +199,10 @@ window.onload = function () {
   }
 
 
-
+  // Generate the plain floor blocks
   function createFloor(){
 
     for(var i = 0; i < 40; i++){
-
-
       var box_geometry = new THREE.CubeGeometry( 10, 10, 10);
       var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0xe0dacd});
 
@@ -236,6 +219,7 @@ window.onload = function () {
 
   }
 
+  // Create the platforms loaded in from the platforms.json file
   function createPlatforms() {
     for(var i = 0; i < platforms.length; i++) {
         var obj = platforms[i];
@@ -255,6 +239,7 @@ window.onload = function () {
   }
 
 
+  // Pull in the moving character heads
   function createCharacters(){
     var foxImg = new THREE.MeshBasicMaterial({
         map:THREE.ImageUtils.loadTexture('/img/mobilia/fox.png')
@@ -275,6 +260,7 @@ window.onload = function () {
     scene.add(skunk);
   }
 
+  // Pull in the map background and place it behind the platforms
   function createMap(){
     var mapImg = new THREE.MeshBasicMaterial({
         map:THREE.ImageUtils.loadTexture('/img/mobilia/mapv2.png'),
@@ -288,13 +274,7 @@ window.onload = function () {
     scene.add(mapPlane);
   }
 
-
-  function foxMove(xPos, yPos) {
-    fox.position.x = xPos * 1.276;
-    fox.position.y = yPos * 1.25;
-    console.log("Fox X: " + fox.position.x + " Fox Y: " + fox.position.y );
-  }
-
+  // Called once every frame
   function loop(){
     var tempHA = (mousePos.x-windowHalfX)/200;
     var tempVA = (mousePos.y - windowHalfY)/200;
@@ -307,12 +287,10 @@ window.onload = function () {
     mapPlane.position.y = 55;
   }
 
+  // Render the scene
   function render(){
     controls.update();
-
     raycaster.setFromCamera( mouse, camera );
-
-
     renderer.render(scene, camera);
   }
 
