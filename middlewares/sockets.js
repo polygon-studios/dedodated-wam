@@ -44,7 +44,7 @@
        		unity.emit('boop');
           mobilia.emit('unity');
        	});
-        
+
         socket.on('playerPositions', function (data) {
           mobilia.emit('playerPositions', data);
         });

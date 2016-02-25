@@ -16,7 +16,7 @@ var fox,
     bear,
     skunk,
     rabbit,
-    trapType = 'bramble';
+    trapType = "bramble";
 
 
 /*
@@ -39,19 +39,19 @@ $( document ).ready(function() {
   $( ".bramble" ).click(function() {
     $( ".trap" ).removeClass( "selected" );
     $( ".bramble" ).addClass( "selected" );
-    trapType = 'bramble'
+    trapType = "bramble";
   });
 
   $( ".button" ).click(function() {
     $( ".trap" ).removeClass( "selected" );
     $( ".button" ).addClass( "selected" );
-    trapType = 'button'
+    trapType = "button";
   });
 
   $( ".pinecone" ).click(function() {
     $( ".trap" ).removeClass( "selected" );
     $( ".pinecone" ).addClass( "selected" );
-    trapType = 'pinecone'
+    trapType = "pinecone";
   });
 });
 
@@ -160,7 +160,7 @@ window.onload = function () {
 
   					if ( INTERSECTED != intersects[ 0 ].object ) {
 
-  						if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+  						//if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
   						INTERSECTED = intersects[ 0 ].object;
   						INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
@@ -172,7 +172,7 @@ window.onload = function () {
 
   				} else {
 
-  					if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+  					//if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
   					INTERSECTED = null;
 
@@ -244,19 +244,19 @@ window.onload = function () {
     var foxImg = new THREE.MeshBasicMaterial({
         map:THREE.ImageUtils.loadTexture('/img/mobilia/fox.png')
     });
-    //foxImg.map.needsUpdate = true;
+    foxImg.needsUpdate = true;
 
     fox = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),foxImg);
-    fox.overdraw = true;
+    //fox.overdraw = true;
     scene.add(fox);
 
     var skunkImg = new THREE.MeshBasicMaterial({
         map:THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png')
     });
-    //foxImg.map.needsUpdate = true;
+    //skunkImg.map.needsUpdate = true;
 
     skunk = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),skunkImg);
-    skunk.overdraw = true;
+    //skunk.overdraw = true;
     scene.add(skunk);
   }
 

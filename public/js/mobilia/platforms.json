@@ -441,5 +441,19 @@ var platforms = [
     "y_pos" : "70",
     "colour": 0x33ccff
   },
+  {
+    "id"    : "62",
+    "type"  : "grass",
+    "x_pos" : "370",
+    "y_pos" : "50",
+    "colour": 0x33ccff
+  },
+  {
+    "id"    : "63",
+    "type"  : "grass",
+    "x_pos" : "380",
+    "y_pos" : "50",
+    "colour": 0x33ccff
+  },
 
 ];
