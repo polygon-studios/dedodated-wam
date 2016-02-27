@@ -26,13 +26,13 @@ var fox,
 window.moveFox = function(xPos, yPos){
   fox.position.x = xPos * 1.276 * 10 + 10;
   fox.position.y = yPos * 1.35 * 10 + 10;
-  console.log("Fox X: " + fox.position.x + " Fox Y: " + fox.position.y );
+  //console.log("Fox X: " + fox.position.x + " Fox Y: " + fox.position.y );
 }
 
 window.moveSkunk = function(xPos, yPos){
   skunk.position.x = xPos * 1.276 * 10 + 10;
   skunk.position.y = yPos * 1.35 * 10 + 10;
-  console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
+  //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
 }
 
 $( document ).ready(function() {
@@ -94,10 +94,10 @@ window.onload = function () {
     aspectRatio = WIDTH / HEIGHT;
     fieldOfView = 60;
     nearPlane = 0.1;
-    farPlane = 1000;
+    farPlane = 10000;
     camera = new THREE.OrthographicCamera(
       WIDTH / - 2, WIDTH / 2, HEIGHT / 2, HEIGHT / - 2, nearPlane, farPlane);
-    camera.position.z = 10;
+    camera.position.z = 50;
     camera.position.y = 14;
     camera.position.x = 190;
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true });
@@ -118,12 +118,12 @@ window.onload = function () {
 
     // Setting up camera controls & restrictions
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.target = new THREE.Vector3(200,10,-100);
+    controls.target = new THREE.Vector3(200,10,-300);
     controls.minPolarAngle = -Math.PI / 2;
     controls.maxPolarAngle = Math.PI / 2;
     controls.noZoom = false;
     controls.noPan = false;
-    controls.noRotate = false;
+    controls.noRotate = true;
     controls.minZoom = 4;
 		controls.maxZoom = 10;
     controls.enableDamping = true;
@@ -155,22 +155,25 @@ window.onload = function () {
       raycaster.setFromCamera( mouse, camera );
       var texture;
 
+      // Do a raycast intersect to see if any object intersects it
       var intersects = raycaster.intersectObjects( scene.children );
 
   				if ( intersects.length > 0 ) {
 
   					if ( INTERSECTED != intersects[ 0 ].object ) {
 
-  						//if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+    					INTERSECTED = intersects[ 0 ].object;
 
-  						INTERSECTED = intersects[ 0 ].object;
-  						//INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-  						INTERSECTED.material.color.setHex( 0xe74c3c );
-              texture = THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png');
-              INTERSECTED.material.map = texture;
-              console.log()
-              posX = (INTERSECTED.position.x/10) - 1;
-              posY = (INTERSECTED.position.y/10);
+              // Only attempt trap place is block as an ID associated with it
+              if(INTERSECTED.userData.id) {
+    						//INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+    						INTERSECTED.material.color.setHex( 0xe74c3c );
+                texture = THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png');
+                console.log(INTERSECTED.userData.id);
+                INTERSECTED.material.map = texture;
+                posX = (INTERSECTED.position.x/10) - 1;
+                posY = (INTERSECTED.position.y/10);
+              }
 
   					}
 
@@ -217,7 +220,7 @@ window.onload = function () {
 
       groundBlock.position.y = 0;
       groundBlock.position.x = 10 * i + 10;
-      //groundBlock.receiveShadow = true;
+      groundBlock.userData.id = 64 + i;
       scene.add( groundBlock );
     }
 
@@ -238,7 +241,7 @@ window.onload = function () {
 
         platformBlock.position.y = obj.y_pos;
         platformBlock.position.x = obj.x_pos;
-        platformBlock.id = obj.id;
+        platformBlock.userData.id = obj.id;
         scene.add( platformBlock );
     }
   }

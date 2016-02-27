@@ -558,13 +558,13 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		switch ( event.touches.length ) {
 
-			case 1:	// one-fingered touch: rotate
+			case 1:	// one-fingered touch: pan
 
-				if ( scope.noRotate === true ) return;
+				if ( scope.noPan === true ) return;
 
-				state = STATE.TOUCH_ROTATE;
+				state = STATE.TOUCH_PAN;
 
-				rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+				panStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
 				break;
 
 			case 2:	// two-fingered touch: dolly
@@ -579,13 +579,13 @@ THREE.OrbitControls = function ( object, domElement ) {
 				dollyStart.set( 0, distance );
 				break;
 
-			case 3: // three-fingered touch: pan
+			case 3: // three-fingered touch: rotate
 
-				if ( scope.noPan === true ) return;
+				if ( scope.noRotate === true ) return;
 
-				state = STATE.TOUCH_PAN;
+				state = STATE.TOUCH_ROTATE;
 
-				panStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+				rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
 				break;
 
 			default:
