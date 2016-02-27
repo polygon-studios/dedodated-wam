@@ -609,20 +609,17 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		switch ( event.touches.length ) {
 
-			case 1: // one-fingered touch: rotate
+			case 1: // one-fingered touch: pan
 
-				if ( scope.noRotate === true ) return;
-				if ( state !== STATE.TOUCH_ROTATE ) return;
+				if ( scope.noPan === true ) return;
+				if ( state !== STATE.TOUCH_PAN ) return;
 
-				rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-				rotateDelta.subVectors( rotateEnd, rotateStart );
+				panEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+				panDelta.subVectors( panEnd, panStart );
 
-				// rotating across whole screen goes 360 degrees around
-				scope.rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed );
-				// rotating up and down along whole screen attempts to go 360, but limited to 180
-				scope.rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed );
+				scope.pan( panDelta.x, panDelta.y );
 
-				rotateStart.copy( rotateEnd );
+				panStart.copy( panEnd );
 
 				scope.update();
 				break;
@@ -654,17 +651,20 @@ THREE.OrbitControls = function ( object, domElement ) {
 				scope.update();
 				break;
 
-			case 3: // three-fingered touch: pan
+			case 3: // three-fingered touch: rotate
 
-				if ( scope.noPan === true ) return;
-				if ( state !== STATE.TOUCH_PAN ) return;
+				if ( scope.noRotate === true ) return;
+				if ( state !== STATE.TOUCH_ROTATE ) return;
 
-				panEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-				panDelta.subVectors( panEnd, panStart );
+				rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+				rotateDelta.subVectors( rotateEnd, rotateStart );
 
-				scope.pan( panDelta.x, panDelta.y );
+				// rotating across whole screen goes 360 degrees around
+				scope.rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed );
+				// rotating up and down along whole screen attempts to go 360, but limited to 180
+				scope.rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed );
 
-				panStart.copy( panEnd );
+				rotateStart.copy( rotateEnd );
 
 				scope.update();
 				break;

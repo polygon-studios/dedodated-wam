@@ -113,8 +113,6 @@ window.onload = function () {
     // Event listeners
     window.addEventListener('resize', onWindowResize, false);
     document.addEventListener('mousedown', handleMouseDown, false);
-    document.addEventListener('touchstart', handleTouchStart, false);
-    document.addEventListener('touchend', handleTouchEnd, false);
 
     // Setting up camera controls & restrictions
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -142,11 +140,6 @@ window.onload = function () {
     render();
   }
 
-  function handleTouchStart(event) {
-  }
-
-  function handleTouchEnd(event) {
-  }
 
   function handleMouseDown(event) {
       var posX, posY;
