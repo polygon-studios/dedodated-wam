@@ -25,13 +25,13 @@ var fox,
 
 window.moveFox = function(xPos, yPos){
   fox.position.x = xPos * 1.276 * 10 + 10;
-  fox.position.y = yPos * 1.35 * 10 + 5;
+  fox.position.y = yPos * 1.35 * 10 + 10;
   console.log("Fox X: " + fox.position.x + " Fox Y: " + fox.position.y );
 }
 
 window.moveSkunk = function(xPos, yPos){
   skunk.position.x = xPos * 1.276 * 10 + 10;
-  skunk.position.y = yPos * 1.35 * 10 + 5;
+  skunk.position.y = yPos * 1.35 * 10 + 10;
   console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
 }
 
@@ -97,7 +97,7 @@ window.onload = function () {
     farPlane = 1000;
     camera = new THREE.OrthographicCamera(
       WIDTH / - 2, WIDTH / 2, HEIGHT / 2, HEIGHT / - 2, nearPlane, farPlane);
-    camera.position.z = 100;
+    camera.position.z = 10;
     camera.position.y = 14;
     camera.position.x = 190;
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true });
@@ -123,7 +123,7 @@ window.onload = function () {
     controls.maxPolarAngle = Math.PI / 2;
     controls.noZoom = false;
     controls.noPan = false;
-    controls.noRotate = true;
+    controls.noRotate = false;
     controls.minZoom = 4;
 		controls.maxZoom = 10;
     controls.enableDamping = true;
@@ -153,6 +153,7 @@ window.onload = function () {
       mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
   		mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
       raycaster.setFromCamera( mouse, camera );
+      var texture;
 
       var intersects = raycaster.intersectObjects( scene.children );
 
@@ -163,8 +164,11 @@ window.onload = function () {
   						//if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
   						INTERSECTED = intersects[ 0 ].object;
-  						INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-  						INTERSECTED.material.emissive.setHex( 0xff0000 );
+  						//INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
+  						INTERSECTED.material.color.setHex( 0xe74c3c );
+              texture = THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png');
+              INTERSECTED.material.map = texture;
+              console.log()
               posX = (INTERSECTED.position.x/10) - 1;
               posY = (INTERSECTED.position.y/10);
 
@@ -234,6 +238,7 @@ window.onload = function () {
 
         platformBlock.position.y = obj.y_pos;
         platformBlock.position.x = obj.x_pos;
+        platformBlock.id = obj.id;
         scene.add( platformBlock );
     }
   }
