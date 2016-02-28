@@ -38,17 +38,16 @@ block content
   .wrapper
     .parallax.filter-black
       .parallax-image
-        img(src='/img/login-bg.png')
+        img(src='/img/about/screen4.jpg')
       .small-info
-        h1.hidden-xs.hidden-sm
-          | Pyjama Jamaica
-        h3.hidden-xs.hidden-sm
-          | Lorizzle ipsum bling bling sit amizzle, consectetuer adipiscing elit.
+        h1
+          | Pyjama Jam
+          small.subtitle In the funky forest
         .col-md-2.col-md-offset-5.text-center.visible-xs.visible-sm
           .card.card-plain
-            h5.small
-              | Looking for the mobile app? Look no further
-            button.btn.btn-block.btn-lg.btn-fill.btn-info.btn-stumbleupon(href='#fakelink') Get Playing!
+
+            button.btn.btn-block.btn-lg.btn-fill.btn-info.btn-stumbleupon(href='/' type='button') Go to the mobile app &nbsp;
+              i.fa.fa-share
 
     .section.about
       .container
@@ -56,14 +55,14 @@ block content
         .row
           .col-md-6
             p
-              | Bacon ipsum dolor amet picanha landjaeger short loin, jerky shank strip steak pork chop chuck meatball. Shoulder turkey pork kevin. Jerky strip steak ball tip short ribs short loin bacon ground round pork belly shank leberkas beef ribs. Cupim tri-tip turkey picanha ham hock turducken alcatra tenderloin filet mignon, bacon capicola pork chicken.
+              | Pyjama Jam follows four young animal friends who are having a slumber party in the forest. The critters explore the forest during the day by leaping between platforms and collecting the coolest items for the party. The friends can use the items that they collect or bring them back to the cabin. The animal that brings back the most supplies to the cabin during the day is rewarded with a brighter light at night.
             p
-              | Capicola jerky shoulder beef pastrami ham hock. Bacon ribeye shank ham pork pig frankfurter, beef brisket pastrami jowl. Turkey t-bone swine, ball tip alcatra short ribs jerky hamburger leberkas cupim pork chop turducken drumstick sausage.
+              | At night, the friends must battle spooky monsters as they once again compete to get the most items. Whoever returns the most items by the end of the night wins the right to sleep in the top bunk.
 
           .col-md-6
             .card.card-plain
               .image
-                img(src='/img/login-bg.png', alt='...')
+                img(src='/img/about/screen3.jpg', alt='...')
                 .filter
                   button.btn.btn-neutral.btn-simple(type='button')
                     i.fa.fa-image
@@ -79,11 +78,11 @@ block content
                     // Wrapper for slides
                     .carousel-inner
                       .item.active
-                        img(src='/img/login-bg.png', alt='')
+                        img(src='/img/about/Xbox1.jpg', alt='')
                       .item
-                        img(src='/img/login-bg.png', alt='')
+                        img(src='/img/about/Xbox2.jpg', alt='')
                       .item
-                        img(src='/img/login-bg.png', alt='')
+                        img(src='/img/about/Xbox3.jpg', alt='')
                     // Controls
                     a.left.carousel-control(href='#card-product-carousel', data-slide='prev')
                       span.fa.fa-angle-left
@@ -97,9 +96,8 @@ block content
                   p.description
                     | Collect items for points or use them on your friends
                   .footer
-                    span.price.price Action packed
-                    button.btn.btn-default.btn-fill.pull-right.btn-xs.btn-hover
-                      i.fa.fa-star
+                    span.price.price Try to win!
+
               // end card
           .col-md-6
             .card.card-product
@@ -126,18 +124,16 @@ block content
                   p.description
                     | Connect to the website and place traps to mess up your friends!
                   .footer
-                    span.price.price Keep yourself entertained
-                    button.btn.btn-default.btn-fill.pull-right.btn-xs.btn-hover
-                      i.fa.fa-star
+                    span.price.price Make your friends loathe you
               // end card
     .section.action
       .container
         h2.section-title See it in Action
-        .row
+        .row.photogallery
           .col-md-4
             .card.card-plain
               .image
-                img(src='/img/login-bg.png', alt='...')
+                img(src='/img/about/screen1.jpg', alt='...')
                 .filter
                   button.btn.btn-neutral.btn-simple(type='button')
                     i.fa.fa-image
@@ -146,7 +142,7 @@ block content
           .col-md-8
             .card.card-plain
               .image
-                img(src='/img/login-bg.png', alt='...')
+                img(src='/img/about/screen2.jpg', alt='...')
                 .filter
                   button.btn.btn-neutral.btn-simple(type='button')
                     i.fa.fa-image
@@ -155,7 +151,7 @@ block content
           .col-md-8
             .card.card-plain
               .image
-                img(src='/img/login-bg.png', alt='...')
+                img(src='/img/about/screen3.jpg', alt='...')
                 .filter
                   button.btn.btn-neutral.btn-simple(type='button')
                     i.fa.fa-image
@@ -164,7 +160,7 @@ block content
           .col-md-4
             .card.card-plain
               .image
-                img(src='/img/login-bg.png', alt='...')
+                img(src='/img/about/screen4.jpg', alt='...')
                 .filter
                   button.btn.btn-neutral.btn-simple(type='button')
                     i.fa.fa-image
@@ -173,7 +169,7 @@ block content
           .col-md-4
             .card.card-plain
               .image
-                img(src='/img/login-bg.png', alt='...')
+                img(src='/img/about/HeroBanner.jpg', alt='...')
                 .filter
                   button.btn.btn-neutral.btn-simple(type='button')
                     i.fa.fa-image
@@ -228,7 +224,7 @@ block content
                 hr
                 .text-center
                   button.btn.btn-social.btn-facebook.btn-simple(href='#')
-                    i.fa.fa-facebook-square
+                    i.fa.fa-linkedin
                   button.btn.btn-social.btn-twitter.btn-simple(href='www.twitter.com/tridotdesigns')
                     i.fa.fa-twitter
                   button.btn.btn-social.btn-github.btn-simple(href='www.github.com/iryanclarke')
@@ -254,11 +250,11 @@ block content
                     |  Unity Programmer
                     br
                     i.fa.fa-wrench.fa-fw.text-muted
-                    |  Room set-up
+                    |  Project Manager
                 hr
                 .text-center
-                  button.btn.btn-social.btn-facebook.btn-simple(href='#')
-                    i.fa.fa-facebook-square
+                  button.btn.btn-social.btn-linkedin.btn-simple(href='#')
+                    i.fa.fa-linkedin
                   button.btn.btn-social.btn-twitter.btn-simple(href='#')
                     i.fa.fa-twitter
               // end card
@@ -285,6 +281,8 @@ block content
                     |  Item Designer
                 hr
                 .text-center
+                  button.btn.btn-social.btn-linkedin.btn-simple(href='#')
+                    i.fa.fa-linkedin
                   button.btn.btn-social.btn-twitter.btn-simple(href='#')
                     i.fa.fa-twitter
                   button.btn.btn-social.btn-github.btn-simple(href='#')

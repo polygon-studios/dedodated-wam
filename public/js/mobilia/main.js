@@ -122,10 +122,10 @@ window.onload = function () {
     controls.noZoom = false;
     controls.noPan = false;
     controls.noRotate = true;
-    controls.minZoom = 4;
-		controls.maxZoom = 10;
+    controls.minZoom = 1;
+		controls.maxZoom = 5;
     controls.enableDamping = true;
-    controls.dampingFactor = 0.5;
+    controls.dampingFactor = 1;
   }
 
   // Recalculate width and height on window resize
@@ -203,7 +203,7 @@ window.onload = function () {
   function createFloor(){
 
     for(var i = 0; i < 40; i++){
-      var box_geometry = new THREE.CubeGeometry( 10, 10, 10);
+      var box_geometry = new THREE.BoxGeometry( 10, 10, 10);
       var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0xe0dacd});
 
       groundBlock = new THREE.Mesh(
