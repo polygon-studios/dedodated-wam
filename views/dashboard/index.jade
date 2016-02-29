@@ -21,24 +21,6 @@ block content
               a(href='/about') About
             li
               a(href='/') Mobile App
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown')
-                | Settings
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='#') Action
-                li
-                  a(href='#') Another action
-                li
-                  a(href='#') Something
-                li
-                  a(href='#') Another action
-                li
-                  a(href='#') Something
-                li.divider
-                li
-                  a(href='#') Separated link
         // /.navbar-collapse
       // /.container-fluid
 
@@ -54,7 +36,7 @@ block content
                     tr
                       th.text-center Place
                       th Icon
-                      th Name
+                      th Character
                       th.text-right Points
                       th.text-right Items
                   tbody
@@ -89,48 +71,27 @@ block content
                   img(src='/img/login-bg.png', alt='...', style='display: none;')
                   .filter
                 .content
-                  h4.title The next big thing in web development is here!
-                .footer
-                  .stats
-                    a(href='#')
-                      i.fa.fa-comment
-                      |  68 comments
-                  .stats
-                    a(href='#')
-                      i.fa.fa-heart
-                      |  221 likes
+                  h4.title.text-center Time left
+                  span
+                    h2 8:00m
           .col-md-4
             .card.card-background
               .image(style='background-image: url("/img/login-bg.png"); background-size: cover; background-position: 50% 50%;')
                   img(src='/img/login-bg.png', alt='...', style='display: none;')
                   .filter
                 .content
-                  h4.title The next big thing in web development is here!
-                .footer
-                  .stats
-                    a(href='#')
-                      i.fa.fa-comment
-                      |  68 comments
-                  .stats
-                    a(href='#')
-                      i.fa.fa-heart
-                      |  221 likes
+                  h4.title.text-center Items collected
+                  span
+                    h2 81
           .col-md-4
             .card.card-background
               .image(style='background-image: url("/img/login-bg.png"); background-size: cover; background-position: 50% 50%;')
                   img(src='/img/login-bg.png', alt='...', style='display: none;')
                   .filter
                 .content
-                  h4.title The next big thing in web development is here!
-                .footer
-                  .stats
-                    a(href='#')
-                      i.fa.fa-comment
-                      |  68 comments
-                  .stats
-                    a(href='#')
-                      i.fa.fa-heart
-                      |  221 likes
+                  h4.title.text-center Traps placed
+                  span
+                    h2 15
     // wrapper
 
     // jQuery and Bootstrap core files
@@ -146,7 +107,6 @@ block content
     script(src='./js/bootstrap-datepicker.js')
     script(src='/js/chartist.min.js')
     script(src='/js/jquery.tagsinput.js')
-    script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js')
     // Get Shit Done Kit PRO Core javascript
     script(src='/js/get-shit-done.js')
 
