@@ -1,7 +1,7 @@
 /**
  * mobilia/index.js
  * ----------------------------------
- * Handles GET & POST requests from the '/' base url
+ * Handles GET & POST requests from the '/play' base url
  * Serves the mobile web app and routes database requests
  * @router
  */
@@ -44,7 +44,7 @@ mc.connect('mongodb://127.0.0.1/test-mongo', function(err, db) {
 // # Load homepage
 router.get('/', function(req, res) {
     if (req.session.username) {
-        res.redirect("mobilia");
+        res.redirect("play/mobilia");
     } else {
         res.render('index', { title: 'Pyjama Jam',
                               error: req.query.error });
@@ -77,7 +77,7 @@ router.post('/login', function(req, res) {
     res.redirect("/mobilia");
 });
 
-router.post('/logout', function(req, res) {
+router.post('/play/logout', function(req, res) {
     req.session.destroy(function(err){
         if (err) {
             console.log("Error: %s", err);

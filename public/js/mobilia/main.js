@@ -35,6 +35,10 @@ window.moveSkunk = function(xPos, yPos){
   //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
 }
 
+window.removeTrap = function(trapID){
+
+}
+
 $( document ).ready(function() {
   $( ".bramble" ).click(function() {
     $( ".trap" ).removeClass( "selected" );
@@ -87,7 +91,7 @@ window.onload = function () {
 
   // Initialize three.js, screen space & mouse events
   function init(){
-    scene = new Physijs.Scene({ fixedTimeStep: 1 / 120 });
+     scene = new THREE.Scene();
 
     HEIGHT = window.innerHeight;
     WIDTH = window.innerWidth;

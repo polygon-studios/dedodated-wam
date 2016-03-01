@@ -14,7 +14,7 @@ block content
       - if(error)
         div.error #{error}
       div.login-form
-        form(action="/login", method="post")
+        form(action="play/login", method="post")
             div.form-group
                 input.form-control.limitwidth(type="text", name="username", placeholder="Ex: Bob or Sally")
             button.btn.btn-default(type="submit") Lets go!
