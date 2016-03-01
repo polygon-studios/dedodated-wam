@@ -50,7 +50,8 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', mobilia);
+app.use('/', about);
+app.use('/play', mobilia);
 app.use('/admin', admin);
 app.use('/admin/:page', admin);
 app.use('/stats', stats);

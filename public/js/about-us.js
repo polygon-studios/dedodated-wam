@@ -11,7 +11,7 @@ $().ready(function(){
             parallax();
         });
     }
-    
+
 });
 
 var parallax = function() {
