@@ -12,11 +12,26 @@ block header
 
 
 block content
+
   #world
+
   #traps
       .bramble.trap.selected
-        h3 Bramble
+        p Bramble
       .button.trap
-        h3 Button
+        p Button
       .pinecone.trap
-        h3 Pinecone
+        p Pinecone
+
+  #help
+
+
+  .alerts
+    .alert.alert-danger
+        .container
+          b Ooops!
+          |  There's already a trap there!
+    .alert.alert-success
+        .container
+          b Yay!
+          |  Trap has been placed

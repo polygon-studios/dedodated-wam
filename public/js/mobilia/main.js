@@ -16,7 +16,9 @@ var fox,
     bear,
     skunk,
     rabbit,
-    trapType = "bramble";
+    trapType = "bramble",
+    trapID,
+    trapPlaced = false;
 
 
 /*
@@ -24,18 +26,34 @@ var fox,
 */
 
 window.moveFox = function(xPos, yPos){
-  fox.position.x = xPos * 1.276 * 10 + 10;
-  fox.position.y = yPos * 1.35 * 10 + 10;
+  fox.position.x = xPos * 1.39 * 10;
+  fox.position.y = yPos * 1.35 * 10 + 5;
   //console.log("Fox X: " + fox.position.x + " Fox Y: " + fox.position.y );
 }
 
 window.moveSkunk = function(xPos, yPos){
-  skunk.position.x = xPos * 1.276 * 10 + 10;
-  skunk.position.y = yPos * 1.35 * 10 + 10;
+  skunk.position.x = xPos * 1.39 * 10;
+  skunk.position.y = yPos * 1.35 * 10 + 5;
+  //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
+}
+
+window.moveBear = function(xPos, yPos){
+  bear.position.x = xPos * 1.39 * 10;
+  bear.position.y = yPos * 1.35 * 10 + 5;
+  //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
+}
+
+window.moveRabbit = function(xPos, yPos){
+  rabbit.position.x = xPos * 1.39 * 10;
+  rabbit.position.y = yPos * 1.35 * 10 + 5;
   //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
 }
 
 window.removeTrap = function(trapID){
+
+}
+
+window.placeTrap = function(trapID){
 
 }
 
@@ -125,7 +143,7 @@ window.onload = function () {
     controls.maxPolarAngle = Math.PI / 2;
     controls.noZoom = false;
     controls.noPan = false;
-    controls.noRotate = true;
+    controls.noRotate = false;
     controls.minZoom = 1;
 		controls.maxZoom = 5;
     controls.enableDamping = true;
@@ -163,13 +181,23 @@ window.onload = function () {
 
               // Only attempt trap place is block as an ID associated with it
               if(INTERSECTED.userData.id) {
-    						//INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-    						INTERSECTED.material.color.setHex( 0xe74c3c );
-                texture = THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png');
-                console.log(INTERSECTED.userData.id);
-                INTERSECTED.material.map = texture;
-                posX = (INTERSECTED.position.x/10) - 1;
-                posY = (INTERSECTED.position.y/10);
+
+                if(INTERSECTED.userData.active) {
+                  $(".alerts .alert-success").fadeOut();
+                  $(".alerts .alert-danger").fadeOut();
+                  $(".alerts .alert-danger").slideDown().delay(3000).fadeOut('slow');
+                }
+                else {
+      						INTERSECTED.material.color.setHex( 0xe74c3c );
+                  texture = THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png');
+                  INTERSECTED.material.map = texture;
+                  posX = (INTERSECTED.position.x/10) - 1;
+                  posY = (INTERSECTED.position.y/10);
+                  trapID = INTERSECTED.userData.id;
+                  INTERSECTED.userData.active = true;
+                  $(".alerts .alert-success").slideDown().fadeOut(2000);
+                  trapPlaced = true;
+                }
               }
 
   					}
@@ -181,8 +209,12 @@ window.onload = function () {
   					INTERSECTED = null;
 
   				}
-      if(posX != null)
-        placeTrap(posX, posY, trapType);
+      if(trapPlaced) {
+        console.log('Trap ' + trapID + ' placed');
+        placeTrap(posX, posY, trapType, trapID);
+        trapPlaced = false;
+      }
+
   }
 
   // Create scene lights
@@ -239,6 +271,7 @@ window.onload = function () {
         platformBlock.position.y = obj.y_pos;
         platformBlock.position.x = obj.x_pos;
         platformBlock.userData.id = obj.id;
+        platformBlock.userData.active = false;
         scene.add( platformBlock );
     }
   }
@@ -246,23 +279,50 @@ window.onload = function () {
 
   // Pull in the moving character heads
   function createCharacters(){
-    var foxImg = new THREE.MeshBasicMaterial({
-        map:THREE.ImageUtils.loadTexture('/img/mobilia/fox.png')
+    // Fox
+      var foxImg = new THREE.MeshBasicMaterial({
+          map:THREE.ImageUtils.loadTexture('/img/mobilia/fox.png'),
+          transparent: false,
+          opacity: 1
+      });
+      foxImg.needsUpdate = true;
+      fox = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),foxImg);
+      fox.overdraw = true;
+      scene.add(fox);
+
+    // Skunk
+      var skunkImg = new THREE.MeshBasicMaterial({
+          map:THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png'),
+          transparent: false,
+          opacity: 1
+      });
+      //skunkImg.map.needsUpdate = true;
+      skunk = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),skunkImg);
+      //skunk.overdraw = true;
+      scene.add(skunk);
+
+    // Bear
+      var bearImg = new THREE.MeshBasicMaterial({
+          map:THREE.ImageUtils.loadTexture('/img/mobilia/bear.png'),
+          transparent: false,
+          opacity: 1
+      });
+      //skunkImg.map.needsUpdate = true;
+      bear = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),bearImg);
+      //bear.overdraw = true;
+      scene.add(bear);
+
+    // Rabbit
+    var rabbitImg = new THREE.MeshBasicMaterial({
+        map:THREE.ImageUtils.loadTexture('/img/mobilia/rabbit.png'),
+        transparent: false,
+        opacity: 1
     });
-    foxImg.needsUpdate = true;
+    //rabbitImg.map.needsUpdate = true;
 
-    fox = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),foxImg);
-    //fox.overdraw = true;
-    scene.add(fox);
-
-    var skunkImg = new THREE.MeshBasicMaterial({
-        map:THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png')
-    });
-    //skunkImg.map.needsUpdate = true;
-
-    skunk = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),skunkImg);
-    //skunk.overdraw = true;
-    scene.add(skunk);
+    rabbit = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),rabbitImg);
+    //bear.overdraw = true;
+    scene.add(rabbit);
   }
 
   // Pull in the map background and place it behind the platforms

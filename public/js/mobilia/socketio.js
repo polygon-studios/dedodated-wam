@@ -19,6 +19,8 @@ socket.on('userTrap', function (data) {
 socket.on('playerPositions', function (data) {
   moveFox(data.foxX, data.foxY);
   moveSkunk(data.skunkX, data.skunkY);
+  moveBear(data.bearX, data.bearY);
+  moveRabbit(data.rabbitX, data.rabbitY);
 });
 
 socket.on('unity', function (data) {
@@ -27,8 +29,9 @@ socket.on('unity', function (data) {
 
 
 // Places a trap
-function placeTrap(posX, posY, trapType) {
+function placeTrap(posX, posY, trapType, trapID) {
   socket.emit('trap-Place', { 'trap' : trapType,
                               'pos-x': posX,
                               'pos-y': posY});
+  console.log('Trap ' + trapID + ' placed');
 };
