@@ -49,6 +49,10 @@
           mobilia.emit('playerPositions', data);
         });
 
+        socket.on('playerEnter', function (data) {
+          unity.emit('playerEnter', data);
+        });
+
      })
 
      unity.on('disconnect', function(socket){
