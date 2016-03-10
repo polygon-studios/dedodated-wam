@@ -125,8 +125,13 @@ window.onload = function () {
     fieldOfView = 60;
     nearPlane = 0.1;
     farPlane = 10000;
-    camera = new THREE.OrthographicCamera(
-      WIDTH / - 2, WIDTH / 2, HEIGHT / 2, HEIGHT / - 2, nearPlane, farPlane);
+    //camera = new THREE.OrthographicCamera(
+    //  WIDTH / - 2, WIDTH / 2, HEIGHT / 2, HEIGHT / - 2, nearPlane, farPlane);
+    camera = new THREE.PerspectiveCamera(
+    fieldOfView,
+    aspectRatio,
+    nearPlane,
+    farPlane);
     camera.position.z = 50;
     camera.position.y = 14;
     camera.position.x = 190;
@@ -153,8 +158,10 @@ window.onload = function () {
     controls.noZoom = false;
     controls.noPan = false;
     controls.noRotate = false;
-    controls.minZoom = 1;
-		controls.maxZoom = 5;
+    //controls.minZoom = 1;
+		//controls.maxZoom = 5;
+    controls.minDistance = 400;
+		controls.maxDistance = 550;
     controls.enableDamping = true;
     controls.dampingFactor = 1;
   }
@@ -168,7 +175,7 @@ window.onload = function () {
     renderer.setSize(WIDTH, HEIGHT);
     camera.aspect = WIDTH / HEIGHT;
     camera.updateProjectionMatrix();
-    render();
+    loop();
     console.log('Resized');
   }
 
