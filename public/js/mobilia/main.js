@@ -26,27 +26,35 @@ var fox,
 */
 
 window.moveFox = function(xPos, yPos){
-  fox.position.x = xPos * 1.39 * 10;
-  fox.position.y = yPos * 1.35 * 10 + 5;
-  //console.log("Fox X: " + fox.position.x + " Fox Y: " + fox.position.y );
+  if(fox){
+    fox.position.x = xPos * 1.39 * 10;
+    fox.position.y = yPos * 1.35 * 10 + 5;
+    //console.log("Fox X: " + fox.position.x + " Fox Y: " + fox.position.y );
+  }
 }
 
 window.moveSkunk = function(xPos, yPos){
-  skunk.position.x = xPos * 1.39 * 10;
-  skunk.position.y = yPos * 1.35 * 10 + 5;
-  //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
+  if(skunk){
+    skunk.position.x = xPos * 1.39 * 10;
+    skunk.position.y = yPos * 1.35 * 10 + 5;
+    //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
+  }
 }
 
 window.moveBear = function(xPos, yPos){
-  bear.position.x = xPos * 1.39 * 10;
-  bear.position.y = yPos * 1.35 * 10 + 5;
-  //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
+  if(bear){
+    bear.position.x = xPos * 1.39 * 10;
+    bear.position.y = yPos * 1.35 * 10 + 5;
+    //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
+  }
 }
 
 window.moveRabbit = function(xPos, yPos){
-  rabbit.position.x = xPos * 1.39 * 10;
-  rabbit.position.y = yPos * 1.35 * 10 + 5;
-  //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
+  if(rabbit){
+    rabbit.position.x = xPos * 1.39 * 10;
+    rabbit.position.y = yPos * 1.35 * 10 + 5;
+    //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
+  }
 }
 
 window.removeTrap = function(trapID){
@@ -135,6 +143,7 @@ window.onload = function () {
     // Event listeners
     window.addEventListener('resize', onWindowResize, false);
     document.addEventListener('mousedown', handleMouseDown, false);
+    window.addEventListener("orientationchange", onWindowResize, false);
 
     // Setting up camera controls & restrictions
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -160,6 +169,7 @@ window.onload = function () {
     camera.aspect = WIDTH / HEIGHT;
     camera.updateProjectionMatrix();
     render();
+    console.log('Resized');
   }
 
 
