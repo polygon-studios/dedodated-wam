@@ -74,7 +74,7 @@ router.post('/login', function(req, res) {
 
     console.log("Username: %s", username);
     req.session.username = username;
-    res.redirect("/mobilia");
+    res.redirect("/play/mobilia");
 });
 
 router.post('/play/logout', function(req, res) {
