@@ -32,6 +32,7 @@
 
         socket.on('trap-Place', function (data) {
           unity.emit('trapPlace', data);
+          mobilia.emit('userTrap', data);
         });
      })
 
@@ -42,7 +43,6 @@
         unity.emit('news', { hello: 'Unity' });
        	socket.on('beep', function(){
        		unity.emit('boop');
-          mobilia.emit('unity');
        	});
 
         socket.on('playerPositions', function (data) {

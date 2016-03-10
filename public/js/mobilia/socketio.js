@@ -23,10 +23,6 @@ socket.on('playerPositions', function (data) {
   moveRabbit(data.rabbitX, data.rabbitY);
 });
 
-socket.on('unity', function (data) {
-  console.log('Unity');
-});
-
 
 // Places a trap
 function placeTrap(posX, posY, trapType, trapID) {
