@@ -132,8 +132,8 @@ window.onload = function () {
     aspectRatio,
     nearPlane,
     farPlane);
-    camera.position.z = 50;
-    camera.position.y = 14;
+    camera.position.z = 300;
+    camera.position.y = 50;
     camera.position.x = 190;
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true });
     renderer.setSize(WIDTH, HEIGHT);
@@ -160,10 +160,10 @@ window.onload = function () {
     controls.noRotate = false;
     //controls.minZoom = 1;
 		//controls.maxZoom = 5;
-    controls.minDistance = 400;
+    controls.minDistance = 350;
 		controls.maxDistance = 550;
     controls.enableDamping = true;
-    controls.dampingFactor = 1;
+    controls.dampingFactor = 2;
   }
 
   // Recalculate width and height on window resize
@@ -256,7 +256,7 @@ window.onload = function () {
   function createFloor(){
 
     for(var i = 0; i < 40; i++){
-      var box_geometry = new THREE.BoxGeometry( 10, 10, 10);
+      var box_geometry = new THREE.BoxGeometry( 10, 10, 5);
       var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0xe0dacd});
 
       groundBlock = new THREE.Mesh(
@@ -277,7 +277,7 @@ window.onload = function () {
     for(var i = 0; i < platforms.length; i++) {
         var obj = platforms[i];
 
-        var box_geometry = new THREE.BoxGeometry( 10, 10, 10);
+        var box_geometry = new THREE.BoxGeometry( 10, 10, 5);
         var platformBlock, material = new THREE.MeshLambertMaterial({ color: obj.colour});
 
         platformBlock = new THREE.Mesh(
