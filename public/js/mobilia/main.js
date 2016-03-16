@@ -57,6 +57,10 @@ window.moveRabbit = function(xPos, yPos){
   }
 }
 
+window.timeDown = function(){
+  $( ".wait" ).css("z-index", "101");
+}
+
 window.removeTrap = function(trapID){
 
 }

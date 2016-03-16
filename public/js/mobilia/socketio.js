@@ -30,4 +30,5 @@ function placeTrap(posX, posY, trapType, trapID) {
                               'pos-x': posX,
                               'pos-y': posY});
   console.log('Trap ' + trapID + ' placed');
+  timeDown();
 };

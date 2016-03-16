@@ -32,6 +32,7 @@ body {
 }
 
 #traps {
+  z-index: 100;
   position: fixed;
   bottom: 0;
   background-color: #27ae60;
@@ -53,6 +54,34 @@ body {
 
 .selected {
   background-color: #f39c12;
+}
+
+.wait {
+  z-index: 99;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  background-color: #27ae60;
+  border-radius: 5px 5px 0px 0px;
+  margin: 0 auto;
+  width: 70%;
+  left: 15%;
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.info {
+  margin: 0px 7px 0px 7px;
+  padding: 0px 7px 0px 7px;
+  text-align: center;
+  float: left;
+  width: 100%;
+  color: #EFEFEF;
+}
+
+.info p {
+  font-size: 25px;
 }
 
 @media only screen and (max-width: 640px) {
