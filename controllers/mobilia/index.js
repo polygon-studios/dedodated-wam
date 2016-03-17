@@ -59,7 +59,7 @@ router.get('/mobilia', function(req, res) {
     if (username) {
         res.render("mobilia.jade", {username: username});
     } else {
-        res.redirect("/?error=You need a name first!");
+        res.redirect("play/?error=You need a name first!");
     }
 });
 
