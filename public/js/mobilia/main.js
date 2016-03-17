@@ -259,7 +259,22 @@ window.onload = function () {
   // Generate the plain floor blocks
   function createFloor(){
 
-    for(var i = 0; i < 40; i++){
+    for(var i = 0; i < 15; i++){
+      var box_geometry = new THREE.BoxGeometry( 10, 10, 5);
+      var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0xe0dacd});
+
+      groundBlock = new THREE.Mesh(
+        box_geometry,
+        material
+      );
+
+      groundBlock.position.y = 0;
+      groundBlock.position.x = 10 * i + 10;
+      groundBlock.userData.id = 64 + i;
+      scene.add( groundBlock );
+    }
+
+    for(var i = 25; i < 40; i++){
       var box_geometry = new THREE.BoxGeometry( 10, 10, 5);
       var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0xe0dacd});
 
@@ -309,6 +324,7 @@ window.onload = function () {
       foxImg.needsUpdate = true;
       fox = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),foxImg);
       fox.overdraw = true;
+      fox.position.z = 2;
       scene.add(fox);
 
     // Skunk
@@ -320,6 +336,7 @@ window.onload = function () {
       //skunkImg.map.needsUpdate = true;
       skunk = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),skunkImg);
       //skunk.overdraw = true;
+      skunk.position.z = 2;
       scene.add(skunk);
 
     // Bear
@@ -331,6 +348,7 @@ window.onload = function () {
       //skunkImg.map.needsUpdate = true;
       bear = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),bearImg);
       //bear.overdraw = true;
+      bear.position.z = 2;
       scene.add(bear);
 
     // Rabbit
@@ -343,6 +361,7 @@ window.onload = function () {
 
     rabbit = new THREE.Mesh(new THREE.PlaneBufferGeometry(10, 10),rabbitImg);
     //bear.overdraw = true;
+    rabbit.position.z = 2;
     scene.add(rabbit);
   }
 
