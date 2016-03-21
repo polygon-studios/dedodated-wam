@@ -167,7 +167,7 @@ window.onload = function () {
     controls.minDistance = 350;
 		controls.maxDistance = 550;
     controls.enableDamping = true;
-    controls.dampingFactor = 2;
+    controls.dampingFactor = 6;
   }
 
   // Recalculate width and height on window resize

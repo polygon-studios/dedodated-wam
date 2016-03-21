@@ -53,6 +53,10 @@
           unity.emit('playerEnter', data);
         });
 
+        socket.on('nighttime', function () {
+          unity.emit('nighttime');
+        });
+
      })
 
      unity.on('disconnect', function(socket){
