@@ -18,7 +18,9 @@ var fox,
     rabbit,
     trapType = "bramble",
     trapID,
-    trapPlaced = false;
+    traps = [];
+
+var trapPlaced = false;
 
 
 /*
@@ -65,8 +67,15 @@ window.removeTrap = function(trapID){
 
 }
 
-window.placeTrap = function(trapID){
-
+window.placeOtherTrap = function(trapID){
+  for(i = 0; i < traps.length; i++){
+    if(traps[i].userData.id === trapID){
+      console.log("threeJS.userID: " + traps[i].userData.id + " equals the trapID: " + trapID )
+      traps[i].userData.active = true;
+      traps[i].material.color.setHex( 0xe74c3c );
+    }
+  }
+  console.log("SHould have made a thing active");
 }
 
 $( document ).ready(function() {
@@ -309,6 +318,7 @@ window.onload = function () {
         platformBlock.userData.id = obj.id;
         platformBlock.userData.active = false;
         scene.add( platformBlock );
+        traps.push( platformBlock );
     }
   }
 

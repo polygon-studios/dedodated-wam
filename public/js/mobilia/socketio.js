@@ -12,7 +12,7 @@ socket.on('connected', function (data) {
 
 // Receives location of trap placed by another user
 socket.on('userTrap', function (data) {
-  console.log(data);
+  placeOtherTrap(data.ID);
 });
 
 // Position handler
@@ -28,7 +28,8 @@ socket.on('playerPositions', function (data) {
 function placeTrap(posX, posY, trapType, trapID) {
   socket.emit('trap-Place', { 'trap' : trapType,
                               'pos-x': posX,
-                              'pos-y': posY});
+                              'pos-y': posY,
+                              'ID' : trapID});
   console.log('Trap ' + trapID + ' placed');
   timeDown();
 };
