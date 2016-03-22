@@ -15,6 +15,11 @@ socket.on('userTrap', function (data) {
   placeOtherTrap(data.ID);
 });
 
+// Receives location of trap deleted in the main unity game
+socket.on('deleteTrap', function (data) {
+  removeTrap(data.ID);
+});
+
 // Position handler
 socket.on('playerPositions', function (data) {
   moveFox(data.foxX, data.foxY);

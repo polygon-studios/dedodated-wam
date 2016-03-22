@@ -21,6 +21,7 @@ var fox,
     traps = [];
 
 var trapPlaced = false;
+var trapDisabled = false;
 
 
 /*
@@ -60,22 +61,51 @@ window.moveRabbit = function(xPos, yPos){
 }
 
 window.timeDown = function(){
-  //$( ".wait" ).css("z-index", "101");
+  $( ".wait" ).css("z-index", "101");
+  var duration = 20;
+  display = document.querySelector('#time-left');
+  var timer = duration, minutes, seconds;
+    setInterval(
+      function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = seconds + " seconds till next trap!";
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+
+        if(seconds == 0){
+          $( ".wait" ).delay(100).css("z-index", "1");
+          trapDisabled = false;
+        }
+      },
+    1000);
 }
 
 window.removeTrap = function(trapID){
-
+  for(i = 0; i < traps.length; i++){
+    if(traps[i].userData.id === trapID){
+      console.log("threeJS.userID: " + traps[i].userData.id + " equals the trapID: " + trapID );
+      traps[i].userData.active = false;
+      var platform = platforms[i];
+      traps[i].material.color.setHex( platform.colour );
+    }
+  }
 }
 
 window.placeOtherTrap = function(trapID){
   for(i = 0; i < traps.length; i++){
     if(traps[i].userData.id === trapID){
-      console.log("threeJS.userID: " + traps[i].userData.id + " equals the trapID: " + trapID )
+      console.log("threeJS.userID: " + traps[i].userData.id + " equals the trapID: " + trapID );
       traps[i].userData.active = true;
       traps[i].material.color.setHex( 0xe74c3c );
     }
   }
-  console.log("SHould have made a thing active");
 }
 
 $( document ).ready(function() {
@@ -209,8 +239,8 @@ window.onload = function () {
 
     					INTERSECTED = intersects[ 0 ].object;
 
-              // Only attempt trap place is block as an ID associated with it
-              if(INTERSECTED.userData.id) {
+              // Only attempt trap place is block as an ID associated with it, and if your timer is over
+              if(INTERSECTED.userData.id && !trapDisabled) {
 
                 if(INTERSECTED.userData.active) {
                   $(".alerts .alert-success").fadeOut();
@@ -229,6 +259,11 @@ window.onload = function () {
                   trapPlaced = true;
                 }
               }
+              else {
+                $(".alerts .alert-success").fadeOut();
+                $(".alerts .alert-warning").fadeOut();
+                $(".alerts .alert-warning").slideDown().delay(3000).fadeOut('slow');
+              }
 
   					}
 
@@ -243,6 +278,7 @@ window.onload = function () {
         console.log('Trap ' + trapID + ' placed');
         placeTrap(posX, posY, trapType, trapID);
         trapPlaced = false;
+        trapDisabled = true;
       }
 
   }
