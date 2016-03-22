@@ -259,7 +259,7 @@ window.onload = function () {
                   trapPlaced = true;
                 }
               }
-              else {
+              else if(!INTERSECTED.userData.active){
                 $(".alerts .alert-success").fadeOut();
                 $(".alerts .alert-warning").fadeOut();
                 $(".alerts .alert-warning").slideDown().delay(3000).fadeOut('slow');
