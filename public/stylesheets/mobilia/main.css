@@ -71,14 +71,32 @@ body {
   justify-content: space-around;
 }
 
-.info {
-  margin: 0px 7px 0px 7px;
-  padding: 0px 7px 0px 7px;
+  .wait .info {
+    margin: 4px 7px 0px 7px;
+    padding: 0px 7px 0px 7px;
+    text-align: center;
+    float: left;
+    width: 100%;
+    color: #EFEFEF;
+  }
+
+.no-game {
+  position: fixed;
+  width: 98%;
+  height: 97%;
   text-align: center;
-  float: left;
-  width: 100%;
-  color: #EFEFEF;
+  background-color: #3498DB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -200;
+  margin: 7px;
+  border-radius: 5px;
 }
+  .no-game .text-container {
+    color: #FFF;
+  }
+
 
 .info p {
   font-size: 25px;

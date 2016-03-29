@@ -22,6 +22,7 @@ var fox,
 
 var trapPlaced = false;
 var trapDisabled = false;
+var gameActive = true;
 
 
 /*
@@ -40,7 +41,6 @@ window.moveSkunk = function(xPos, yPos){
   if(skunk){
     skunk.position.x = xPos * 1.39 * 10;
     skunk.position.y = yPos * 1.35 * 10 + 5;
-    //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
   }
 }
 
@@ -48,7 +48,6 @@ window.moveBear = function(xPos, yPos){
   if(bear){
     bear.position.x = xPos * 1.39 * 10;
     bear.position.y = yPos * 1.35 * 10 + 5;
-    //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
   }
 }
 
@@ -56,7 +55,6 @@ window.moveRabbit = function(xPos, yPos){
   if(rabbit){
     rabbit.position.x = xPos * 1.39 * 10;
     rabbit.position.y = yPos * 1.35 * 10 + 5;
-    //console.log("Skunk X: " + skunk.position.x + " Skunk Y: " + skunk.position.y );
   }
 }
 
@@ -65,12 +63,11 @@ window.timeDown = function(){
   var duration = 20;
   display = document.querySelector('#time-left');
   var timer = duration, minutes, seconds;
-    setInterval(
+  seconds, timer = 20;
+  var refreshInterval = setInterval(
       function () {
-        minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         display.textContent = seconds + " seconds till next trap!";
@@ -82,6 +79,7 @@ window.timeDown = function(){
         if(seconds == 0){
           $( ".wait" ).delay(100).css("z-index", "1");
           trapDisabled = false;
+          clearInterval(refreshInterval);
         }
       },
     1000);
@@ -101,11 +99,14 @@ window.removeTrap = function(trapID){
 window.placeOtherTrap = function(trapID){
   for(i = 0; i < traps.length; i++){
     if(traps[i].userData.id === trapID){
-      console.log("threeJS.userID: " + traps[i].userData.id + " equals the trapID: " + trapID );
       traps[i].userData.active = true;
       traps[i].material.color.setHex( 0xe74c3c );
     }
   }
+}
+
+window.hideDialog = function(){
+  gameActive = true;
 }
 
 $( document ).ready(function() {
@@ -224,61 +225,66 @@ window.onload = function () {
 
 
   function handleMouseDown(event) {
-      var posX, posY;
-      mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-  		mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-      raycaster.setFromCamera( mouse, camera );
-      var texture;
 
-      // Do a raycast intersect to see if any object intersects it
-      var intersects = raycaster.intersectObjects( scene.children );
+      // Only perform mousedown events if game is active
+      if(gameActive){
+        var posX, posY;
+        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    		mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+        raycaster.setFromCamera( mouse, camera );
+        var texture;
 
-  				if ( intersects.length > 0 ) {
+        // Do a raycast intersect to see if any object intersects it
+        var intersects = raycaster.intersectObjects( scene.children );
+    				if ( intersects.length > 0 ) {
+    					if ( INTERSECTED != intersects[ 0 ].object ) {
 
-  					if ( INTERSECTED != intersects[ 0 ].object ) {
+      					INTERSECTED = intersects[ 0 ].object;
 
-    					INTERSECTED = intersects[ 0 ].object;
+                // Only attempt trap place is block as an ID associated with it, and if your timer is over
+                if(INTERSECTED.userData.id && !trapDisabled) {
 
-              // Only attempt trap place is block as an ID associated with it, and if your timer is over
-              if(INTERSECTED.userData.id && !trapDisabled) {
-
-                if(INTERSECTED.userData.active) {
+                  // Alert user if trap is already active
+                  if(INTERSECTED.userData.active) {
+                    $(".alerts .alert-success").fadeOut();
+                    $(".alerts .alert-danger").fadeOut();
+                    $(".alerts .alert-danger").slideDown().delay(3000).fadeOut('slow');
+                  }
+                  // Otherwise, place a trap
+                  else {
+        						INTERSECTED.material.color.setHex( 0xe74c3c );
+                    texture = THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png');
+                    INTERSECTED.material.map = texture;
+                    posX = (INTERSECTED.position.x/10) - 1;
+                    posY = (INTERSECTED.position.y/10);
+                    trapID = INTERSECTED.userData.id;
+                    INTERSECTED.userData.active = true;
+                    $(".alerts .alert-success").slideDown().fadeOut(2000);
+                    trapPlaced = true;
+                  }
+                }
+                // Alert user to wait out their timer
+                else if(INTERSECTED.userData.id && trapDisabled){
                   $(".alerts .alert-success").fadeOut();
-                  $(".alerts .alert-danger").fadeOut();
-                  $(".alerts .alert-danger").slideDown().delay(3000).fadeOut('slow');
+                  $(".alerts .alert-warning").fadeOut();
+                  $(".alerts .alert-warning").slideDown().delay(3000).fadeOut('slow');
                 }
-                else {
-      						INTERSECTED.material.color.setHex( 0xe74c3c );
-                  texture = THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png');
-                  INTERSECTED.material.map = texture;
-                  posX = (INTERSECTED.position.x/10) - 1;
-                  posY = (INTERSECTED.position.y/10);
-                  trapID = INTERSECTED.userData.id;
-                  INTERSECTED.userData.active = true;
-                  $(".alerts .alert-success").slideDown().fadeOut(2000);
-                  trapPlaced = true;
-                }
-              }
-              else if(INTERSECTED.userData.id && trapDisabled){
-                $(".alerts .alert-success").fadeOut();
-                $(".alerts .alert-warning").fadeOut();
-                $(".alerts .alert-warning").slideDown().delay(3000).fadeOut('slow');
-              }
 
-  					}
+    					}
 
-  				} else {
+    				} else {
 
-  					//if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+    					//if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
 
-  					INTERSECTED = null;
+    					INTERSECTED = null;
 
-  				}
-      if(trapPlaced) {
-        console.log('Trap ' + trapID + ' placed');
-        placeTrap(posX, posY, trapType, trapID);
-        trapPlaced = false;
-        trapDisabled = true;
+    				}
+        if(trapPlaced) {
+          console.log('Trap ' + trapID + ' placed');
+          placeTrap(posX, posY, trapType, trapID);
+          trapPlaced = false;
+          trapDisabled = true;
+        }
       }
 
   }

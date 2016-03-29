@@ -197,259 +197,259 @@ var platforms = [
     "colour": 0x996633
   },
   {
-    "id"    : "28",
+    "id"    : "29",
     "type"  : "log",
     "x_pos" : "100",
     "y_pos" : "50",
     "colour": 0x996633
   },
   {
-    "id"    : "28",
+    "id"    : "30",
     "type"  : "log",
     "x_pos" : "80",
     "y_pos" : "30",
     "colour": 0x996633
   },
   {
-    "id"    : "29",
+    "id"    : "31",
     "type"  : "log",
     "x_pos" : "90",
     "y_pos" : "30",
     "colour": 0x996633
   },
   {
-    "id"    : "30",
+    "id"    : "32",
     "type"  : "log",
     "x_pos" : "100",
     "y_pos" : "30",
     "colour": 0x996633
   },
   {
-    "id"    : "31",
-    "type"  : "log",
-    "x_pos" : "140",
-    "y_pos" : "60",
-    "colour": 0x996633
-  },
-  {
-    "id"    : "32",
-    "type"  : "log",
-    "x_pos" : "160",
-    "y_pos" : "60",
-    "colour": 0x996633
-  },
-  {
     "id"    : "33",
     "type"  : "log",
-    "x_pos" : "180",
+    "x_pos" : "140",
     "y_pos" : "60",
     "colour": 0x996633
   },
   {
     "id"    : "34",
     "type"  : "log",
-    "x_pos" : "190",
+    "x_pos" : "160",
     "y_pos" : "60",
     "colour": 0x996633
   },
   {
     "id"    : "35",
     "type"  : "log",
-    "x_pos" : "200",
+    "x_pos" : "180",
     "y_pos" : "60",
     "colour": 0x996633
   },
   {
     "id"    : "36",
     "type"  : "log",
-    "x_pos" : "240",
-    "y_pos" : "50",
+    "x_pos" : "190",
+    "y_pos" : "60",
     "colour": 0x996633
   },
   {
     "id"    : "37",
     "type"  : "log",
-    "x_pos" : "250",
-    "y_pos" : "50",
+    "x_pos" : "200",
+    "y_pos" : "60",
     "colour": 0x996633
   },
   {
     "id"    : "38",
     "type"  : "log",
-    "x_pos" : "260",
+    "x_pos" : "240",
     "y_pos" : "50",
     "colour": 0x996633
   },
   {
     "id"    : "39",
     "type"  : "log",
-    "x_pos" : "310",
+    "x_pos" : "250",
     "y_pos" : "50",
     "colour": 0x996633
   },
   {
     "id"    : "40",
     "type"  : "log",
-    "x_pos" : "320",
+    "x_pos" : "260",
     "y_pos" : "50",
     "colour": 0x996633
   },
   {
     "id"    : "41",
     "type"  : "log",
-    "x_pos" : "330",
+    "x_pos" : "310",
     "y_pos" : "50",
     "colour": 0x996633
   },
   {
     "id"    : "42",
     "type"  : "log",
+    "x_pos" : "320",
+    "y_pos" : "50",
+    "colour": 0x996633
+  },
+  {
+    "id"    : "43",
+    "type"  : "log",
+    "x_pos" : "330",
+    "y_pos" : "50",
+    "colour": 0x996633
+  },
+  {
+    "id"    : "44",
+    "type"  : "log",
     "x_pos" : "10",
     "y_pos" : "20",
     "colour": 0x996633
   },
   {
-    "id"    : "43",
+    "id"    : "45",
     "type"  : "log",
     "x_pos" : "270",
     "y_pos" : "30",
     "colour": 0x996633
   },
   {
-    "id"    : "44",
+    "id"    : "46",
     "type"  : "log",
     "x_pos" : "280",
     "y_pos" : "30",
     "colour": 0x996633
   },
   {
-    "id"    : "45",
+    "id"    : "47",
     "type"  : "log",
     "x_pos" : "290",
     "y_pos" : "30",
     "colour": 0x996633
   },
   {
-    "id"    : "46",
+    "id"    : "48",
     "type"  : "stone",
     "x_pos" : "130",
     "y_pos" : "30",
     "colour": 0x808080
   },
   {
-    "id"    : "47",
+    "id"    : "49",
     "type"  : "stone",
     "x_pos" : "140",
     "y_pos" : "30",
     "colour": 0x808080
   },
   {
-    "id"    : "48",
+    "id"    : "50",
     "type"  : "stone",
     "x_pos" : "150",
     "y_pos" : "30",
     "colour": 0x808080
   },
   {
-    "id"    : "49",
+    "id"    : "51",
     "type"  : "stone",
     "x_pos" : "380",
     "y_pos" : "20",
     "colour": 0x808080
   },
   {
-    "id"    : "50",
+    "id"    : "52",
     "type"  : "stone",
     "x_pos" : "370",
     "y_pos" : "20",
     "colour": 0x808080
   },
   {
-    "id"    : "51",
+    "id"    : "53",
     "type"  : "stone",
     "x_pos" : "360",
     "y_pos" : "20",
     "colour": 0x808080
   },
   {
-    "id"    : "52",
+    "id"    : "54",
     "type"  : "stone",
     "x_pos" : "350",
     "y_pos" : "20",
     "colour": 0x808080
   },
   {
-    "id"    : "53",
-    "type"  : "floater",
-    "x_pos" : "20",
-    "y_pos" : "70",
-    "colour": 0x808080
-  },
-  {
-    "id"    : "54",
-    "type"  : "floater",
-    "x_pos" : "50",
-    "y_pos" : "50",
-    "colour": 0x808080
-  },
-  {
     "id"    : "55",
     "type"  : "floater",
-    "x_pos" : "270",
+    "x_pos" : "20",
     "y_pos" : "70",
     "colour": 0x808080
   },
   {
     "id"    : "56",
     "type"  : "floater",
+    "x_pos" : "50",
+    "y_pos" : "50",
+    "colour": 0x808080
+  },
+  {
+    "id"    : "57",
+    "type"  : "floater",
+    "x_pos" : "270",
+    "y_pos" : "70",
+    "colour": 0x808080
+  },
+  {
+    "id"    : "58",
+    "type"  : "floater",
     "x_pos" : "290",
     "y_pos" : "90",
     "colour": 0x808080
   },
   {
-    "id"    : "57",
+    "id"    : "59",
     "type"  : "floater",
     "x_pos" : "290",
     "y_pos" : "60",
     "colour": 0x808080
   },
   {
-    "id"    : "58",
+    "id"    : "60",
     "type"  : "grass",
     "x_pos" : "20",
     "y_pos" : "40",
     "colour": 0x33ccff
   },
   {
-    "id"    : "59",
+    "id"    : "61",
     "type"  : "grass",
     "x_pos" : "30",
     "y_pos" : "40",
     "colour": 0x33ccff
   },
   {
-    "id"    : "60",
+    "id"    : "62",
     "type"  : "grass",
     "x_pos" : "350",
     "y_pos" : "70",
     "colour": 0x33ccff
   },
   {
-    "id"    : "61",
+    "id"    : "63",
     "type"  : "grass",
     "x_pos" : "360",
     "y_pos" : "70",
     "colour": 0x33ccff
   },
   {
-    "id"    : "62",
+    "id"    : "64",
     "type"  : "grass",
     "x_pos" : "370",
     "y_pos" : "50",
     "colour": 0x33ccff
   },
   {
-    "id"    : "63",
+    "id"    : "65",
     "type"  : "grass",
     "x_pos" : "380",
     "y_pos" : "50",
