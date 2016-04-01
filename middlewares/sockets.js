@@ -61,6 +61,10 @@
           unity.emit('redButton');
         });
 
+        socket.on('endGame', function (data) {
+          unity.emit('endGame', data);
+        });
+
      })
 
      unity.on('disconnect', function(socket){
