@@ -57,6 +57,10 @@
           unity.emit('nighttime');
         });
 
+        socket.on('redButton', function () {
+          unity.emit('redButton');
+        });
+
      })
 
      unity.on('disconnect', function(socket){
