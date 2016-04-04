@@ -65,6 +65,10 @@
           unity.emit('endGame', data);
         });
 
+        socket.on('resetHouse', function (data) {
+          unity.emit('resetHouse', data);
+        });
+
      })
 
      unity.on('disconnect', function(socket){

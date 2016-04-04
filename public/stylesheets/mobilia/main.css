@@ -97,6 +97,31 @@ body {
     color: #FFF;
   }
 
+.instructions {
+  position: fixed;
+  width: 98%;
+  height: 97%;
+  text-align: center;
+  background-color: #34495E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  margin: 7px;
+  border-radius: 5px;
+  flex-wrap: wrap;
+}
+  .instructions .text-container {
+    color: #FFF;
+    width: 100%;
+    height: 90%;
+  }
+  .instructions .confirm {
+    color: #FFF;
+    width: 100%;
+    height: 10%;
+  }
+
 
 .info p {
   font-size: 25px;

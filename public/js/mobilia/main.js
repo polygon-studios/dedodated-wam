@@ -127,6 +127,10 @@ $( document ).ready(function() {
     $( ".pinecone" ).addClass( "selected" );
     trapType = "pinecone";
   });
+
+  $( "#hide-instructions" ).click(function() {
+    $( ".instructions" ).css("z-index", "-200");
+  });
 });
 
 window.onload = function () {
@@ -156,7 +160,7 @@ window.onload = function () {
 
   var mouse = new THREE.Vector2(), INTERSECTED;
 
-  var mapPlane;
+  var mapPlane, housePlane;
 
 
   // Initialize three.js, screen space & mouse events
@@ -312,7 +316,7 @@ window.onload = function () {
 
     for(var i = 0; i < 15; i++){
       var box_geometry = new THREE.BoxGeometry( 10, 10, 5);
-      var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0xe0dacd});
+      var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0x996633});
 
       groundBlock = new THREE.Mesh(
         box_geometry,
@@ -327,7 +331,7 @@ window.onload = function () {
 
     for(var i = 25; i < 40; i++){
       var box_geometry = new THREE.BoxGeometry( 10, 10, 5);
-      var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0xe0dacd});
+      var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0x996633});
 
       groundBlock = new THREE.Mesh(
         box_geometry,
@@ -431,6 +435,22 @@ window.onload = function () {
     scene.add(mapPlane);
   }
 
+  // Pull in the map background and place it behind the platforms
+  function createHouse(){
+    var houseImg = new THREE.MeshBasicMaterial({
+        map:THREE.ImageUtils.loadTexture('/img/mobilia/house.png'),
+        transparent: false
+    });
+    //mapImg.map.needsUpdate = true;
+
+    housePlane = new THREE.Mesh(new THREE.PlaneBufferGeometry(70, 40),houseImg);
+    housePlane.overdraw = true;
+    housePlane.position.z = 5;
+    housePlane.position.x = 200;
+    housePlane.position.y = 25;
+    scene.add(housePlane);
+  }
+
   // Called once every frame
   function loop(){
     var tempHA = (mousePos.x-windowHalfX)/200;
@@ -458,5 +478,6 @@ window.onload = function () {
   createPlatforms();
   createCharacters();
   createMap();
+  createHouse();
   loop();
 }
