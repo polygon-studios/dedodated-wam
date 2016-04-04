@@ -211,7 +211,7 @@ window.onload = function () {
     controls.minDistance = 350;
 		controls.maxDistance = 550;
     controls.enableDamping = true;
-    controls.dampingFactor = 6;
+    controls.dampingFactor = 20;
   }
 
   // Recalculate width and height on window resize
@@ -373,8 +373,8 @@ window.onload = function () {
   function createCharacters(){
     // Fox
       var foxImg = new THREE.MeshBasicMaterial({
-          map:THREE.ImageUtils.loadTexture('/img/mobilia/fox.png'),
-          transparent: false,
+          map:THREE.ImageUtils.loadTexture('/img/mobilia/fox-head.png'),
+          transparent: true,
           opacity: 1
       });
       foxImg.needsUpdate = true;
@@ -385,8 +385,8 @@ window.onload = function () {
 
     // Skunk
       var skunkImg = new THREE.MeshBasicMaterial({
-          map:THREE.ImageUtils.loadTexture('/img/mobilia/skunk.png'),
-          transparent: false,
+          map:THREE.ImageUtils.loadTexture('/img/mobilia/skunk-head.png'),
+          transparent: true,
           opacity: 1
       });
       //skunkImg.map.needsUpdate = true;
@@ -397,8 +397,8 @@ window.onload = function () {
 
     // Bear
       var bearImg = new THREE.MeshBasicMaterial({
-          map:THREE.ImageUtils.loadTexture('/img/mobilia/bear.png'),
-          transparent: false,
+          map:THREE.ImageUtils.loadTexture('/img/mobilia/bear-head.png'),
+          transparent: true,
           opacity: 1
       });
       //skunkImg.map.needsUpdate = true;
@@ -409,8 +409,8 @@ window.onload = function () {
 
     // Rabbit
     var rabbitImg = new THREE.MeshBasicMaterial({
-        map:THREE.ImageUtils.loadTexture('/img/mobilia/rabbit.png'),
-        transparent: false,
+        map:THREE.ImageUtils.loadTexture('/img/mobilia/rabbit-head.png'),
+        transparent: true,
         opacity: 1
     });
     //rabbitImg.map.needsUpdate = true;
@@ -439,7 +439,7 @@ window.onload = function () {
   function createHouse(){
     var houseImg = new THREE.MeshBasicMaterial({
         map:THREE.ImageUtils.loadTexture('/img/mobilia/house.png'),
-        transparent: false
+        transparent: true
     });
     //mapImg.map.needsUpdate = true;
 
