@@ -15,7 +15,7 @@ It communicates with the client using socket.io within express for real-time com
 
 As of Sept 11th the following:
 ### Server
-This code is hosted on a digitalocean droplet with IP address http://45.55.90.100/
+This code is hosted on a digitalocean droplet with IP address (Jokes, nice try hackers)
 And has:
 - Nginx for rebooting/persistence
 - Nginx to be able to use port :80 instead of :3000
@@ -27,6 +27,7 @@ Has:
 - Form demo storing info in the session (no connection to mongo)
 - Code base is stored in /home/iryanclarke/dedotated-wam
 - Has an example codebase running that connects to and works with the persistent monga database
+- UPDATE: Has middlewares as the socketio 
 
 
 ### Server commands:
