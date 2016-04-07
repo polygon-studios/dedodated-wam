@@ -180,7 +180,7 @@ window.onload = function () {
     aspectRatio,
     nearPlane,
     farPlane);
-    camera.position.z = 300;
+    camera.position.z = 250;
     camera.position.y = 50;
     camera.position.x = 200;
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true });
@@ -210,8 +210,8 @@ window.onload = function () {
 		//controls.maxZoom = 5;
     controls.minDistance = 50;
 		controls.maxDistance = 250;
-    controls.enableDamping = true;
-    controls.dampingFactor = 20;
+    //controls.enableDamping = true;
+    //controls.dampingFactor = 20;
   }
 
   // Recalculate width and height on window resize

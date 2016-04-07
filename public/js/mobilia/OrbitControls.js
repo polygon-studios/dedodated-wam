@@ -158,9 +158,17 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		var te = this.object.matrix.elements;
 
+		// EDIT BY github.com/iryanclarke
+		// Let's damp the panning when you're zoomed in by a factor of how close to 1 you are
+		var zoomedLevel = this.object.matrix.elements[2] * (10000000000000000);
+		var zoomedFactor = Math.min( Math.min(1, 2 / zoomedLevel), 6);
+
+		var cleanedDistance = distance.toPrecision(7);
+		//console.log("PANNING RIGHT/LEFT: Camera Z pos:" + scope.object.matrix.elements[2] * (10000000000000000) + " with zoom factor:" + zoomedFactor + " and a distance of:" + cleanedDistance);
+
 		// get X column of matrix
 		panOffset.set( te[ 0 ], te[ 1 ], te[ 2 ] );
-		panOffset.multiplyScalar( - distance );
+		panOffset.multiplyScalar( - cleanedDistance * zoomedFactor );
 
 		pan.add( panOffset );
 
@@ -171,9 +179,18 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		var te = this.object.matrix.elements;
 
+		// EDIT BY github.com/iryanclarke
+		// Let's damp the panning when you're zoomed in by a factor of how close to 1 you are
+		var zoomedLevel = this.object.matrix.elements[4] * (10000000000000000);
+		var zoomedFactor = Math.min( Math.min(1, 2 / zoomedLevel), 6);
+
+		var cleanedDistance = distance.toPrecision(7);
+		//console.log("PANNING UP: Camera Z pos:" + scope.object.matrix.elements[2] * (10000000000000000) + " with zoom factor:" + zoomedFactor + " and a distance of:" + cleanedDistance);
+
+
 		// get Y column of matrix
 		panOffset.set( te[ 4 ], te[ 5 ], te[ 6 ] );
-		panOffset.multiplyScalar( distance );
+		panOffset.multiplyScalar( cleanedDistance * zoomedFactor);
 
 		pan.add( panOffset );
 
@@ -185,6 +202,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
 
+
 		if ( scope.object instanceof THREE.PerspectiveCamera ) {
 
 			// perspective
@@ -195,15 +213,10 @@ THREE.OrbitControls = function ( object, domElement ) {
 			// half of the fov is center to top of screen
 			targetDistance *= Math.tan( ( scope.object.fov / 2 ) * Math.PI / 180.0 );
 
-			// EDIT BY github.com/iryanclarke
-			// Let's damp the panning when you're zoomed in by a factor of how close to 1 you are
-			var zoomedLevel = this.object.matrix.elements[2] * (10000000000000000);
-			var zoomedFactor = Math.min(1, 2 / zoomedLevel);
 
 			// we actually don't use screenWidth, since perspective camera is fixed to screen height
-			scope.panLeft( zoomedFactor * 2 * deltaX * targetDistance / element.clientHeight );
-			scope.panUp( zoomedFactor * 2 * deltaY * targetDistance / element.clientHeight );
-
+			scope.panLeft(   ( 2 * deltaX * targetDistance / element.clientHeight) );
+			scope.panUp(   ( 2 * deltaY * targetDistance / element.clientHeight) );
 
 		} else if ( scope.object instanceof THREE.OrthographicCamera ) {
 
