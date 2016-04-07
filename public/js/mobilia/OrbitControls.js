@@ -164,7 +164,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		var zoomedFactor = Math.min( Math.min(1, 2 / zoomedLevel.toPrecision(7)), 6);
 
 		var cleanedDistance = distance.toPrecision(7);
-		console.log("PANNING RIGHT/LEFT: Camera Z pos:" + scope.object.matrix.elements[2] * (10000000000000000) + " with zoom factor:" + zoomedFactor + " and a distance of:" + cleanedDistance);
+		//console.log("PANNING RIGHT/LEFT: Camera Z pos:" + scope.object.matrix.elements[2] * (10000000000000000) + " with zoom factor:" + zoomedFactor + " and a distance of:" + cleanedDistance);
 
 		// get X column of matrix
 		panOffset.set( te[ 0 ], te[ 1 ], te[ 2 ] );
@@ -185,7 +185,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 		var zoomedFactor = Math.min( Math.min(1, 2 / zoomedLevel.toPrecision(7)), 6);
 
 		var cleanedDistance = distance.toPrecision(7);
-		console.log("PANNING UP        : Camera Z pos:" + scope.object.matrix.elements[2] * (10000000000000000) + " with zoom factor:" + zoomedFactor + " and a distance of:" + cleanedDistance);
+		//console.log("PANNING UP        : Camera Z pos:" + scope.object.matrix.elements[2] * (10000000000000000) + " with zoom factor:" + zoomedFactor + " and a distance of:" + cleanedDistance);
 
 
 		// get Y column of matrix
