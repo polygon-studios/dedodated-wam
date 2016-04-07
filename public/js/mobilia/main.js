@@ -182,7 +182,7 @@ window.onload = function () {
     farPlane);
     camera.position.z = 300;
     camera.position.y = 50;
-    camera.position.x = 190;
+    camera.position.x = 200;
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true });
     renderer.setSize(WIDTH, HEIGHT);
     renderer.shadowMapEnabled = true;
@@ -200,7 +200,7 @@ window.onload = function () {
 
     // Setting up camera controls & restrictions
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.target = new THREE.Vector3(200,10,-300);
+    controls.target = new THREE.Vector3(200,50,0);
     controls.minPolarAngle = -Math.PI / 2;
     controls.maxPolarAngle = Math.PI / 2;
     controls.noZoom = false;
@@ -208,8 +208,8 @@ window.onload = function () {
     controls.noRotate = false;
     //controls.minZoom = 1;
 		//controls.maxZoom = 5;
-    controls.minDistance = 350;
-		controls.maxDistance = 550;
+    controls.minDistance = 50;
+		controls.maxDistance = 250;
     controls.enableDamping = true;
     controls.dampingFactor = 20;
   }
@@ -316,7 +316,7 @@ window.onload = function () {
 
     for(var i = 0; i < 15; i++){
       var box_geometry = new THREE.BoxGeometry( 10, 10, 5);
-      var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0x996633});
+      var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0x16A085});
 
       groundBlock = new THREE.Mesh(
         box_geometry,
@@ -331,7 +331,7 @@ window.onload = function () {
 
     for(var i = 25; i < 40; i++){
       var box_geometry = new THREE.BoxGeometry( 10, 10, 5);
-      var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0x996633});
+      var groundBlock, material = new THREE.MeshLambertMaterial({ color: 0x16A085});
 
       groundBlock = new THREE.Mesh(
         box_geometry,
@@ -443,11 +443,11 @@ window.onload = function () {
     });
     //mapImg.map.needsUpdate = true;
 
-    housePlane = new THREE.Mesh(new THREE.PlaneBufferGeometry(70, 40),houseImg);
+    housePlane = new THREE.Mesh(new THREE.PlaneBufferGeometry(60, 35),houseImg);
     housePlane.overdraw = true;
     housePlane.position.z = 5;
-    housePlane.position.x = 200;
-    housePlane.position.y = 25;
+    housePlane.position.x = 205;
+    housePlane.position.y = 23;
     scene.add(housePlane);
   }
 
