@@ -82,6 +82,11 @@
           mobilia.emit('removeTrap', data);
         });
 
+        // Resets the house to its original state
+        socket.on('dashboardPacket', function (data) {
+          dashboard.emit('dashboardPacket', data);
+        });
+
         // Passes in the places of the characters when the game ends
         socket.on('endGame', function (data) {
           unity.emit('endGame', data);

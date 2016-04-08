@@ -409,6 +409,48 @@
     h2{
       text-align: center;
       font-size: 50px;
+      margin-top: 50px;
     }
   }
+}
+
+.dashboard .name, .dashboard .points, .dashboard .items {
+  font-size: 18px;
+}
+
+tr:nth-child(even){
+  background-color: #EFEFEF;
+}
+
+.time {
+
+	span.timer {
+	    position: absolute;
+	    width: 100%;
+      margin-left: -15px;
+
+      h2 {
+		    text-align:center;
+		    position: absolute;
+		    line-height: 155px;
+		    width: 100%;
+		    margin:0;
+        margin-top: 0px !important;
+		}
+	}
+	.svg {
+		width: 56%;
+		margin: 0 auto;
+	}
+
+	svg {
+	   -webkit-transform: rotate(-90deg);
+	    transform: rotate(-90deg);
+	}
+
+	.circle_animation {
+	  stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
+	  stroke-dashoffset: 440;
+	  transition: all 2s ease-in;
+	}
 }
