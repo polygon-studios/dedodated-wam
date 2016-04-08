@@ -80,6 +80,7 @@
         // Resets the house to its original state
         socket.on('deleteTrap', function (data) {
           mobilia.emit('deleteTrap', data);
+          
         });
 
         // Passes in the places of the characters when the game ends

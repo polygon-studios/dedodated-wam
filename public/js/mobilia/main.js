@@ -86,17 +86,27 @@ window.timeDown = function(){
 }
 
 window.removeTrap = function(trapID){
+  console.log("This is your rap ID good sir: " + trapID);
+
   for(i = 0; i < traps.length; i++){
+    console.log("Comparing " + traps[i].userData.id + " to: " + trapID);
     if(traps[i].userData.id === trapID){
-      console.log("threeJS.userID: " + traps[i].userData.id + " equals the trapID: " + trapID );
+      //console.log("threeJS.userID: " + traps[i].userData.id + " equals the trapID: " + trapID );
       traps[i].userData.active = false;
       var platform = platforms[i];
-      traps[i].material.color.setHex( platform.colour );
+      console.log("PLS MAKE WORK GOOD SIR");
+      if(platform != undefined){
+        traps[i].material.color.setHex( platforms[i].colour );
+      }
+      else {
+        traps[i].material.color.setHex( 0xFFFFFF );
+      }
     }
   }
 }
 
 window.placeOtherTrap = function(trapID){
+  console.log("This is their rap ID good sir: " + trapID);
   for(i = 0; i < traps.length; i++){
     if(traps[i].userData.id === trapID){
       traps[i].userData.active = true;
@@ -327,6 +337,7 @@ window.onload = function () {
       groundBlock.position.x = 10 * i + 10;
       groundBlock.userData.id = 64 + i;
       scene.add( groundBlock );
+      traps.push( groundBlock );
     }
 
     for(var i = 25; i < 40; i++){
@@ -341,7 +352,9 @@ window.onload = function () {
       groundBlock.position.y = 0;
       groundBlock.position.x = 10 * i + 10;
       groundBlock.userData.id = 64 + i;
+      groundBlock.userData.active = false;
       scene.add( groundBlock );
+      traps.push( groundBlock );
     }
 
   }

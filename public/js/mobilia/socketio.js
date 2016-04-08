@@ -12,12 +12,13 @@ socket.on('connected', function (data) {
 
 // Receives location of trap placed by another user
 socket.on('userTrap', function (data) {
-  placeOtherTrap(data.ID);
+  placeOtherTrap(data.trapID);
 });
 
 // Receives location of trap deleted in the main unity game
 socket.on('deleteTrap', function (data) {
-  removeTrap(data.ID);
+  console.log(data);
+  removeTrap(data.trapID);
 });
 
 // Position handler
@@ -35,6 +36,5 @@ function placeTrap(posX, posY, trapType, trapID) {
                               'pos-x': posX,
                               'pos-y': posY,
                               'ID' : trapID});
-  console.log('Trap ' + trapID + ' placed');
   timeDown();
 };
