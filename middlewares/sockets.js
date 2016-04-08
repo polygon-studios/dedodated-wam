@@ -16,7 +16,7 @@
      // Stats room
      dashboard = io.of('/dashboard');
      dashboard.on('connection', function(socket){
-         mobilia.emit('connected', { hello: 'Dashboard' });
+         dashboard.emit('connected', { hello: 'Dashboard' });
 
          // Ping Unity to see if a game is active!
          socket.on('marco', function(){
@@ -75,6 +75,11 @@
         // Passes when the button locks the house
         socket.on('redButton', function () {
           unity.emit('redButton');
+        });
+
+        // Resets the house to its original state
+        socket.on('deleteTrap', function (data) {
+          mobilia.emit('deleteTrap', data);
         });
 
         // Passes in the places of the characters when the game ends

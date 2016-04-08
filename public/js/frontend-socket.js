@@ -8,9 +8,12 @@
 
 var socket = io.connect('http://45.55.90.100:3000/dashboard');
 
+//var socket = io.connect('http://127.0.0.1:3000/dashboard');
+var
 socket.on('dataPacket', function (data) {
   console.log(data);
-  socket.emit('beep');
+  updateFirstPlace(data.firstChar, data.firstPoints, data.firstItems);
+  updateInfo(data.numItems, data.numTraps);
 });
 
 socket.on('connected', function (data) {
@@ -25,3 +28,11 @@ socket.on('polo', function (data) {
 $( document ).ready(function() {
   socket.emit('marco');
 });
+
+function updateFirstPlace(name, points, items) {
+
+}
+
+function updateInfo(items, traps) {
+
+}
