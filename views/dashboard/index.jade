@@ -1,6 +1,7 @@
 extends layout
 
 block header
+  script(type='text/javascript', src='https://cdn.socket.io/socket.io-1.3.7.js')
 
 
 block content
@@ -40,27 +41,31 @@ block content
                       th.text-right Points
                       th.text-right Items
                   tbody
-                    tr
+                    tr#first
                       td.text-center 1
-                      td Fox
+                      td
+                        img(src='/img/mobilia/fox-head.png', alt='...' width='50px')
                       td Fox
                       td.text-right 99,225
                       td.text-right 99,225
-                    tr
+                    tr#second
                       td.text-center 2
-                      td Skunk
+                      td
+                        img(src='/img/mobilia/skunk-head.png', alt='...' width='50px')
                       td Skunk
                       td.text-right 89,241
                       td.text-right 89,241
-                    tr
+                    tr#third
                       td.text-center 3
-                      td Rabbit
+                      td
+                        img(src='/img/mobilia/rabbit-head.png', alt='...' width='50px')
                       td Rabbit
                       td.text-right 89,241
                       td.text-right 92,144
-                    tr
+                    tr#fourth
                       td.text-center 4
-                      td Bear
+                      td
+                        img(src='/img/mobilia/bear-head.png', alt='...' width='50px')
                       td Bear
                       td.text-right 89,241
                       td.text-right 49,990
@@ -82,7 +87,7 @@ block content
                 .content
                   h4.title.text-center Items collected
                   span
-                    h2 81
+                    h2#items-collected 81
           .col-md-4
             .card.card-background
               .image(style='background-image: url("/img/login-bg.png"); background-size: cover; background-position: 50% 50%;')
@@ -91,7 +96,7 @@ block content
                 .content
                   h4.title.text-center Traps placed
                   span
-                    h2 15
+                    h2#traps-placed 15
     // wrapper
 
     // jQuery and Bootstrap core files
@@ -107,6 +112,7 @@ block content
     script(src='./js/bootstrap-datepicker.js')
     script(src='/js/chartist.min.js')
     script(src='/js/jquery.tagsinput.js')
+    script(src='/js/frontend-socket.js')
     // Get Shit Done Kit PRO Core javascript
     script(src='/js/get-shit-done.js')
     script(src='/js/about-us.js')

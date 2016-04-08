@@ -6,17 +6,22 @@
  * @javascripts
  */
 
- var socket = io.connect('http://127.0.0.1:3000');
+var socket = io.connect('http://45.55.90.100:3000/dashboard');
 
-socket.on('news', function (data) {
+socket.on('dataPacket', function (data) {
   console.log(data);
   socket.emit('beep');
 });
 
-socket.on('Position', function (data) {
+socket.on('connected', function (data) {
+  console.log(data);
+  socket.emit('beep');
+});
+
+socket.on('polo', function (data) {
   console.log(data);
 });
 
-socket.on('beep', function (data) {
-  console.log('BEEP');
+$( document ).ready(function() {
+  socket.emit('marco');
 });

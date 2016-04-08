@@ -14,15 +14,21 @@
      io = socketio.listen(app)
 
      // Stats room
-     stats = io.of('/stats');
-     stats.on('connection', function(socket){
-         stats.emit('Score', { hello: 'My Kajigger' });
+     dashboard = io.of('/dashboard');
+     dashboard.on('connection', function(socket){
+         mobilia.emit('connected', { hello: 'Dashboard' });
+
+         // Ping Unity to see if a game is active!
+         socket.on('marco', function(){
+            unity.emit('marco');
+         });
+
+
      })
 
      // Mobilia room
      mobilia = io.of('/mobilia');
      mobilia.on('connection', function(socket){
-        //socket.join('mobilia');
         mobilia.emit('connected', { hello: 'Mobilia' });
 
         socket.on('beep', function(){
@@ -30,6 +36,12 @@
            unity.emit('boop');
         });
 
+        // Ping Unity to see if a game is active!
+        socket.on('marco', function(){
+           unity.emit('marco');
+        });
+
+        // Ping unity that you've placed a trap
         socket.on('trap-Place', function (data) {
           unity.emit('trapPlace', data);
           mobilia.emit('userTrap', data);
@@ -45,28 +57,40 @@
        		unity.emit('boop');
        	});
 
+        // Continuous function call to move the characters
         socket.on('playerPositions', function (data) {
           mobilia.emit('playerPositions', data);
         });
 
+        // Passes character over to house project
         socket.on('playerEnter', function (data) {
           unity.emit('playerEnter', data);
         });
 
+        // Passes the nighttime trigger to house
         socket.on('nighttime', function () {
           unity.emit('nighttime');
         });
 
+        // Passes when the button locks the house
         socket.on('redButton', function () {
           unity.emit('redButton');
         });
 
+        // Passes in the places of the characters when the game ends
         socket.on('endGame', function (data) {
           unity.emit('endGame', data);
         });
 
+        // Resets the house to its original state
         socket.on('resetHouse', function (data) {
           unity.emit('resetHouse', data);
+        });
+
+        //
+        socket.on('polo', function () {
+          mobilia.emit('polo');
+          dashboard.emit('polo');
         });
 
      })
