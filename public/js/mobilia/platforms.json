@@ -332,21 +332,21 @@ var platforms = [
   {
     "id"    : "48",
     "type"  : "stone",
-    "x_pos" : "130",
+    "x_pos" : "120",
     "y_pos" : "30",
     "colour": 0x7F8C8D
   },
   {
     "id"    : "49",
     "type"  : "stone",
-    "x_pos" : "140",
+    "x_pos" : "130",
     "y_pos" : "30",
     "colour": 0x7F8C8D
   },
   {
     "id"    : "50",
     "type"  : "stone",
-    "x_pos" : "150",
+    "x_pos" : "140",
     "y_pos" : "30",
     "colour": 0x7F8C8D
   },

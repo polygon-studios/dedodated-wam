@@ -22,7 +22,7 @@ var fox,
 
 var trapPlaced = false;
 var trapDisabled = false;
-var gameActive = true;
+var gameActive = false;
 
 
 /*
@@ -117,6 +117,8 @@ window.placeOtherTrap = function(trapID){
 
 window.hideDialog = function(){
   gameActive = true;
+  $( ".no-game" ).css("z-index", "-200");
+
 }
 
 $( document ).ready(function() {

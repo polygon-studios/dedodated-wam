@@ -22,6 +22,16 @@ socket.on('removeTrap', function (data) {
   removeTrap(data.ID);
 });
 
+socket.on('goodbye', function (data) {
+  $( ".no-game" ).css("z-index", "199");
+});
+
+socket.on('polo', function (data) {
+  stopMarco();
+  console.log("Polo received");
+  hideDialog();
+});
+
 // Position handler
 socket.on('playerPositions', function (data) {
   moveFox(data.foxX, data.foxY);
@@ -39,3 +49,18 @@ function placeTrap(posX, posY, trapType, trapID) {
                               'ID' : trapID});
   timeDown();
 };
+
+$( document ).ready(function() {
+  callMarco();
+});
+
+var marcoInterval;
+function callMarco() {
+	marcoInterval = setInterval(function() {
+    socket.emit('marco');
+	}, 1000);
+}
+
+function stopMarco() {
+  clearInterval(marcoInterval);
+}

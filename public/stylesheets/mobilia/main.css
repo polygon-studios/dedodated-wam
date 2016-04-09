@@ -89,7 +89,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: -200;
+  z-index: 199;
   margin: 7px;
   border-radius: 5px;
 }
