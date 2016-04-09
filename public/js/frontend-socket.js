@@ -46,6 +46,7 @@ socket.on('polo', function (data) {
 });
 
 socket.on('goodbye', function (data) {
+  gameOver = false;
   console.log("Unity said goobye");
   callMarco();
   poloCalled = false;

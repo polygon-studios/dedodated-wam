@@ -56,6 +56,7 @@ function placeTrap(posX, posY, trapType, trapID) {
 };
 
 $( document ).ready(function() {
+  
   callMarco();
 });
 
