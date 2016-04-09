@@ -63,9 +63,10 @@ var marcoInterval;
 function callMarco() {
 	marcoInterval = setInterval(function() {
     socket.emit('marco');
-	}, 1000);
+	}, 5000);
 }
 
 function stopMarco() {
   clearInterval(marcoInterval);
+  console.log('Stopping marco');
 }

@@ -19,7 +19,7 @@ socket.on('dashboardPacket', function (data) {
   updatePlace("fourth", data.fourthChar, data.fourthPoints, data.fourthButtons);
 
   updateInfo(data.numItems, data.numTraps);
-  if(!gameOver){
+  if(gameOver == false){
     i++;
   }
 });
