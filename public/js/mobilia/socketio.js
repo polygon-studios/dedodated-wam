@@ -24,12 +24,16 @@ socket.on('removeTrap', function (data) {
 
 socket.on('goodbye', function (data) {
   $( ".no-game" ).css("z-index", "199");
+  $( "#traps" ).css("visibility", "hidden");
+  $( ".wait" ).css("visibility", "hidden");
 });
 
 socket.on('polo', function (data) {
   stopMarco();
   console.log("Polo received");
   hideDialog();
+  $( "#traps" ).css("visibility", "visible");
+  $( ".wait" ).css("visibility", "visible");
 });
 
 // Position handler

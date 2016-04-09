@@ -7,7 +7,7 @@
  */
 
 var socket = io.connect('http://45.55.90.100:3000/dashboard');
-
+var poloCalled = false;
 //var socket = io.connect('http://127.0.0.1:3000/dashboard');
 
 socket.on('dashboardPacket', function (data) {
@@ -27,21 +27,26 @@ socket.on('connected', function (data) {
 });
 
 socket.on('polo', function (data) {
-  stopMarco();
-  time = 480;
-  i = 1;
-  resetTimer();
-  startTimer();
-  console.log("Polo received");
+  if(!poloCalled){
+    poloCalled = true;
+    stopMarco();
+    time = 480;
+    i = 1;
+    resetTimer();
+    startTimer();
+    console.log("Polo received");
+  }
 });
 
 socket.on('goodbye', function (data) {
   console.log("Unity said goobye");
   callMarco();
+  poloCalled = false;
 });
 
 $( document ).ready(function() {
   callMarco();
+  loadTimer();
 });
 
 var marcoInterval;
@@ -73,10 +78,6 @@ function updateInfo(items, traps) {
 var time = 480;
 var initialOffset = '0';
 var i = 1;
-
-$( document ).ready(function() {
-    loadTimer();
- });
 
 function loadTimer() {
 	$('.circle_animation').css('stroke-dashoffset', (1*(440/time)));

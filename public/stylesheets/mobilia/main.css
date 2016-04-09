@@ -32,6 +32,7 @@ body {
 }
 
 #traps {
+  visibility: hidden;
   z-index: 100;
   position: fixed;
   bottom: 0;
@@ -57,6 +58,7 @@ body {
 }
 
 .wait {
+  visibility: hidden;
   z-index: 99;
   height: 60px;
   position: fixed;
