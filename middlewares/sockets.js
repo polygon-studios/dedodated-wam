@@ -103,12 +103,14 @@
           dashboard.emit('polo');
         });
 
+        socket.on('disconnect', function(socket){
+           dashboard.emit('goodbye');
+           mobilia.emit('goodbye');
+        })
+
      })
 
-     unity.on('disconnect', function(socket){
-        dashboard.emit('goodbye');
-        mobilia.emit('goodbye');
-     })
+
 
      return io
  }
