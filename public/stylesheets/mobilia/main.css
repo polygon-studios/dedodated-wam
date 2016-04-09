@@ -59,7 +59,7 @@ body {
 
 .wait {
   visibility: hidden;
-  z-index: 99;
+  z-index: -99 !important;
   height: 60px;
   position: fixed;
   bottom: 0;
