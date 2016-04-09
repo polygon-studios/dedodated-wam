@@ -12,12 +12,13 @@ var socket = io.connect('http://45.55.90.100:3000/dashboard');
 
 socket.on('dashboardPacket', function (data) {
   console.log(data);
-  updatePlace("first", data.firstChar, data.firstPoints, data.firstItems);
-  updatePlace("second", data.secondChar, data.secondPoints, data.secondItems);
-  updatePlace("third", data.thirdChar, data.thirdPoints, data.thirdItems);
-  updatePlace("fourth", data.fourthChar, data.fourthPoints, data.fourthItems);
+  updatePlace("first", data.firstChar, data.firstPoints, data.firstButtons);
+  updatePlace("second", data.secondChar, data.secondPoints, data.secondButtons);
+  updatePlace("third", data.thirdChar, data.thirdPoints, data.thirdButtons);
+  updatePlace("fourth", data.fourthChar, data.fourthPoints, data.fourthButtons);
 
   updateInfo(data.numItems, data.numTraps);
+  i++;
 });
 
 socket.on('connected', function (data) {
@@ -26,15 +27,40 @@ socket.on('connected', function (data) {
 });
 
 socket.on('polo', function (data) {
-  console.log(data);
+  stopMarco();
+  time = 480;
+  i = 1;
+  resetTimer();
+  startTimer();
+  console.log("Polo received");
+});
+
+socket.on('goodbye', function (data) {
+  console.log("Unity said goobye");
+  callMarco();
 });
 
 $( document ).ready(function() {
-  socket.emit('marco');
+  callMarco();
 });
+
+var marcoInterval;
+function callMarco() {
+	marcoInterval = setInterval(function() {
+    socket.emit('marco');
+	}, 1000);
+}
+
+function stopMarco() {
+  clearInterval(marcoInterval);
+}
+
 
 function updatePlace(place, name, points, items) {
   $('#' + place + " .name").html(name);
+
+  var src = '/img/mobilia/' + name + '-head.png';
+  $('#' + place + " img").attr("src", src);
   $('#' + place + " .points").html(points);
   $('#' + place + " .items").html(items);
 }
@@ -56,15 +82,10 @@ function loadTimer() {
 	$('.circle_animation').css('stroke-dashoffset', (1*(440/time)));
 }
 
-function resetTimer() {
-	$('.circle_animation').css('stroke-dashoffset', (480*(440/time)));
-}
 
-
-startTimer();
-
+var timerInterval;
 function startTimer() {
-	var interval = setInterval(function() {
+	timerInterval = setInterval(function() {
 	    $('.circle_animation').css('stroke-dashoffset', (i*(440/time)));
 	    var minutes = Math.floor((time - i) % 3600 / 60);
 	    var seconds = Math.floor((time - i) % 3600 % 60);
@@ -80,10 +101,10 @@ function startTimer() {
 	    if (i == time) {
 	        clearInterval(interval);
 	    }
-	    i++;
 	}, 1000);
 }
 
-function resetTimer(){
-  $('.circle_animation').css('stroke-dashoffset', 440);
+function resetTimer() {
+  clearInterval(timerInterval);
+	$('.circle_animation').css('stroke-dashoffset', (1*(440/time)));
 }

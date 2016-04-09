@@ -97,7 +97,7 @@
           unity.emit('resetHouse', data);
         });
 
-        //
+        // Unity yells polo back to say game is running
         socket.on('polo', function () {
           mobilia.emit('polo');
           dashboard.emit('polo');
@@ -106,7 +106,8 @@
      })
 
      unity.on('disconnect', function(socket){
-        mobilia.emit('gameEnd', { goodbye: 'From Unity' });
+        dashboard.emit('goodbye');
+        mobilia.emit('goodbye');
      })
 
      return io
