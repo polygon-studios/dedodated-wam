@@ -59,7 +59,7 @@ function stopMarco() {
 function updatePlace(place, name, points, items) {
   $('#' + place + " .name").html(name);
 
-  var src = '/img/mobilia/' + name + '-head.png';
+  var src = '/img/mobilia/' + name.toLowerCase() + '-head.png';
   $('#' + place + " img").attr("src", src);
   $('#' + place + " .points").html(points);
   $('#' + place + " .items").html(items);
