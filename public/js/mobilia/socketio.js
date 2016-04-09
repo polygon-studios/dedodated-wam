@@ -56,7 +56,7 @@ function placeTrap(posX, posY, trapType, trapID) {
 
 $( document ).ready(function() {
   $( "#traps" ).css("visibility", "visible");
-  $( ".wait" ).css("visibility", "visible");
+  //$( ".wait" ).css("visibility", "visible");
   hideDialog();
 });
 
