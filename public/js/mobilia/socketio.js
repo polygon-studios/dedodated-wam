@@ -31,9 +31,9 @@ socket.on('goodbye', function (data) {
 });
 
 socket.on('polo', function (data) {
-  stopMarco();
+  //stopMarco();
   //console.log("Polo received");
-  hideDialog();
+  //hideDialog();
 });
 
 // Position handler

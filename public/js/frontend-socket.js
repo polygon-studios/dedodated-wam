@@ -29,8 +29,9 @@ socket.on('connected', function (data) {
   socket.emit('beep');
 });
 
-socket.on('endGame', function (data) {
-  gameOver = true;
+
+socket.on('gameStart', function (data) {
+  gameOver = false;
 });
 
 socket.on('polo', function (data) {
@@ -45,8 +46,8 @@ socket.on('polo', function (data) {
   }
 });
 
-socket.on('goodbye', function (data) {
-  gameOver = false;
+socket.on('endGame', function (data) {
+  gameOver = true;
   console.log("Unity said goobye");
   callMarco();
   poloCalled = false;
@@ -60,7 +61,7 @@ $( document ).ready(function() {
 var marcoInterval;
 function callMarco() {
 	marcoInterval = setInterval(function() {
-    socket.emit('marco');
+    //socket.emit('marco');
 	}, 1000);
 }
 

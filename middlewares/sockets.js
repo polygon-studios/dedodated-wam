@@ -87,6 +87,12 @@
           dashboard.emit('dashboardPacket', data);
         });
 
+        // Passes gamestart
+        socket.on('gameStart', function (data) {
+          mobilia.emit('gameStart', data);
+          dashboard.emit('gameStart', data);
+        });
+
         // Passes in the places of the characters when the game ends
         socket.on('endGame', function (data) {
           unity.emit('endGame', data);
