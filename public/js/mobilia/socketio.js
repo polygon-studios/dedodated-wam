@@ -31,10 +31,8 @@ socket.on('goodbye', function (data) {
 
 socket.on('polo', function (data) {
   stopMarco();
-  console.log("Polo received");
+  //console.log("Polo received");
   hideDialog();
-  $( "#traps" ).css("visibility", "visible");
-  $( ".wait" ).css("visibility", "visible");
 });
 
 // Position handler
@@ -56,18 +54,19 @@ function placeTrap(posX, posY, trapType, trapID) {
 };
 
 $( document ).ready(function() {
-  
-  callMarco();
+  $( "#traps" ).css("visibility", "visible");
+  $( ".wait" ).css("visibility", "visible");
+  hideDialog();
 });
 
 var marcoInterval;
 function callMarco() {
 	marcoInterval = setInterval(function() {
-    socket.emit('marco');
+    //socket.emit('marco');
 	}, 5000);
 }
 
 function stopMarco() {
   clearInterval(marcoInterval);
-  console.log('Stopping marco');
+  //console.log('Stopping marco');
 }
