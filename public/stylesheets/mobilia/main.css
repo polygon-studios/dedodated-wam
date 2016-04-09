@@ -32,7 +32,6 @@ body {
 }
 
 #traps {
-  visibility: hidden;
   z-index: 100;
   position: fixed;
   bottom: 0;
@@ -58,8 +57,7 @@ body {
 }
 
 .wait {
-  visibility: hidden;
-  z-index: -99 !important;
+  z-index: 99;
   height: 60px;
   position: fixed;
   bottom: 0;
@@ -84,6 +82,7 @@ body {
 
 .no-game {
   position: fixed;
+  z-index: -99 !important;
   width: 98%;
   height: 97%;
   text-align: center;
