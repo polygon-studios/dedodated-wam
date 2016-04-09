@@ -26,6 +26,7 @@ socket.on('goodbye', function (data) {
   $( ".no-game" ).css("z-index", "199");
   $( "#traps" ).css("visibility", "hidden");
   $( ".wait" ).css("visibility", "hidden");
+  console.log("Received goodbye");
   resetTraps();
 });
 
