@@ -115,6 +115,21 @@ window.placeOtherTrap = function(trapID){
   }
 }
 
+window.resetTraps = function(){
+  for(i = 0; i < traps.length; i++){
+
+    traps[i].userData.active = false;
+    var platform = platforms[i];
+    if(platform != undefined){
+      traps[i].material.color.setHex( platforms[i].colour );
+    }
+    else {
+      traps[i].material.color.setHex( 0x16A085 );
+    }
+
+  }
+}
+
 window.hideDialog = function(){
   gameActive = true;
   $( ".no-game" ).css("z-index", "-200");

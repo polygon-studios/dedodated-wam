@@ -90,6 +90,8 @@
         // Passes in the places of the characters when the game ends
         socket.on('endGame', function (data) {
           unity.emit('endGame', data);
+          dashboard.emit('endGame', data);
+          mobilia.emit('endGame', data);
         });
 
         // Resets the house to its original state

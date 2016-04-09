@@ -8,6 +8,7 @@
 
 var socket = io.connect('http://45.55.90.100:3000/dashboard');
 var poloCalled = false;
+var gameOver = false;
 //var socket = io.connect('http://127.0.0.1:3000/dashboard');
 
 socket.on('dashboardPacket', function (data) {
@@ -18,12 +19,18 @@ socket.on('dashboardPacket', function (data) {
   updatePlace("fourth", data.fourthChar, data.fourthPoints, data.fourthButtons);
 
   updateInfo(data.numItems, data.numTraps);
-  i++;
+  if(!gameOver){
+    i++;
+  }
 });
 
 socket.on('connected', function (data) {
   console.log(data);
   socket.emit('beep');
+});
+
+socket.on('endGame', function (data) {
+  gameOver = true;
 });
 
 socket.on('polo', function (data) {
